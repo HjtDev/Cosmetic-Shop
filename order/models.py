@@ -15,6 +15,7 @@ class Order(models.Model):
         DONE = 'تکمیل شد', _('تکمیل شد')
 
     objects = jmodels.jManager()
+    order_id = models.CharField(verbose_name='شماره سفارش', max_length=10, default='')
     user = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL, null=True,
                              verbose_name='کاربر')
     first_name = models.CharField(max_length=50, verbose_name='نام')
