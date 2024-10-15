@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_jalali',
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
+    "product.apps.ProductConfig"
 ]
 
 MIDDLEWARE = [
