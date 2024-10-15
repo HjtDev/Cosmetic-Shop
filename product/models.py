@@ -27,6 +27,7 @@ class Product(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(verbose_name='عنوان', max_length=75)
     description = models.TextField(verbose_name='توضیحات')
+    slug = models.SlugField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
     discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
     likes = models.ManyToManyField(User, related_name='liked_products', blank=True, verbose_name='افرادی که این محصول را پسندیدند')
