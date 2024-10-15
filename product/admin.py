@@ -32,6 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
         ('last_sell', JDateFieldListFilter),
         ('created_at', JDateFieldListFilter),
         ('updated_at', JDateFieldListFilter),
+        'is_visible'
     )
     ordering = ('category', 'is_visible')
 
@@ -46,3 +47,18 @@ class ProductAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('product', 'user', 'is_visible')
+    list_filter = (
+        ('created_at', JDateFieldListFilter),
+        ('updated_at', JDateFieldListFilter),
+        'product',
+        'user',
+        'is_visible'
+    )
+    search_fields = ('text',)
+    ordering = ('created_at', 'updated_at')
+    list_editable = ('is_visible',)
