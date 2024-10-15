@@ -17,6 +17,13 @@ class UserAdmin(UserAdmin):
     form = UserChangeForm
     model = User
 
+    search_fields = [
+        'phone',
+        'first_name',
+        'last_name',
+        'email'
+    ]
+
     list_display = [
         'phone',
         'first_name',
@@ -46,8 +53,10 @@ class UserAdmin(UserAdmin):
     # get_saved_products.short_description = "Saved Products"
 
     add_fieldsets = (
-        (None, {'fields': ('phone', 'password1', 'password2')}),
-        ('Personal Information', {'fields': ('first_name', 'last_name', 'email')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Dates', {'fields': ('last_login', 'date_joined')}),
+        ('اصلی', {'fields': ('phone', 'password1', 'password2')}),
+        ('اطلاعات شخصی', {'fields': ('first_name', 'last_name', 'email')}),
+        ('دسترسی ها', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('تاریخ ها', {'fields': ('last_login', 'date_joined')}),
     )
+
+
