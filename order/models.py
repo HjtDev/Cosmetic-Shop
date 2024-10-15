@@ -14,7 +14,7 @@ class Order(models.Model):
         DELIVERED = 'تحویل مرسوله به مشتری', _('تحویل مرسوله به مشتری')  # Delivered
         DONE = 'تکمیل شد', _('تکمیل شد')
 
-    objects = jmodels.jManager
+    objects = jmodels.jManager()
     user = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL, null=True,
                              verbose_name='کاربر')
     first_name = models.CharField(max_length=50, verbose_name='نام')
