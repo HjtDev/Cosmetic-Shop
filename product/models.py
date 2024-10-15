@@ -36,6 +36,7 @@ class Product(models.Model):
     inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار')
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
     last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', default=datetime.now)
+    is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
 
     def get_price(self):
         return self.price * (self.discount // 100)
