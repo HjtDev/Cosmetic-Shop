@@ -60,3 +60,30 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
+class Transaction(models.Model):
+    class ReasonChoice(models.TextChoices):
+        ORDER = 'برای سفارش', _('برای سفارش')
+        REFUND = 'بازگشت وجه', _('بازگشت وجه')
+
+    class TransactionStatusChoice(models.TextChoices):
+        PAID = 'پرداخت موفق'
+        FAILED = 'پرداخت ناموفق'
+
+    objects = jmodels.jManager()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='transactions', verbose_name='کاربر',
+                             blank=True, null=True)
+    reason = models.CharField(verbose_name='علت تراکنش', choices=ReasonChoice.choices, max_length=21)
+    status = models.CharField(verbose_name='وضعیت تراکنش', choices=TransactionStatusChoice.choices, max_length=21)
+    description = models.TextField(verbose_name='توضیحات نراکنش', max_length=100)
+    price = models.PositiveIntegerField(verbose_name='هزینه', default=0)
+    created_at = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+
+    class Meta:
+        verbose_name = 'تراکنش'
+        verbose_name_plural = 'تراکنش ها'
+        ordering = ('created_at',)
+
+    def __str__(self):
+        return f'Transaction #{self.id}'
