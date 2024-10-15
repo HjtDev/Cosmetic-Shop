@@ -30,18 +30,32 @@ class Product(models.Model):
     slug = models.SlugField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
     discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
-    likes = models.ManyToManyField(User, related_name='liked_products', blank=True, verbose_name='افرادی که این محصول را پسندیدند')
-    bought = models.ManyToManyField(User, related_name='bought_products', blank=True, verbose_name='کسانی که این محصول را خریده اند')
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.DO_NOTHING, verbose_name='دسته بندی')
+    likes = models.ManyToManyField(User, related_name='liked_products', blank=True,
+                                   verbose_name='افرادی که این محصول را پسندیدند')
+    bought = models.ManyToManyField(User, related_name='bought_products', blank=True,
+                                    verbose_name='کسانی که این محصول را خریده اند')
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.DO_NOTHING,
+                                 verbose_name='دسته بندی')
     inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار')
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
-    last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', default=datetime.now)
+    last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', blank=True, null=True)
     created_at = jmodels.jDateTimeField(verbose_name='تاریخ ایجاد', auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(verbose_name='آخرین تغییر', auto_now=True)
 
+    class Meta:
+        verbose_name = 'محصول'
+        verbose_name_plural = 'محصولات'
+        ordering = ('-created_at',)
+        indexes = [
+            models.Index(fields=['category', 'created_at'], name='product_idx')
+        ]
+
     def get_price(self):
         return self.price * (self.discount // 100)
+
+    def __str__(self):
+        return self.title
 
 
 def image_path(instance, filename):
@@ -77,7 +91,7 @@ class Feature(models.Model):
         verbose_name = 'ویژگی'
         verbose_name_plural = 'ویژگی‌ها'
         ordering = ['key']
-    
+
 
 class Comment(models.Model):
     objects = jmodels.jManager()
