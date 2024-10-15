@@ -35,8 +35,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.DO_NOTHING, verbose_name='دسته بندی')
     inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار')
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
-    last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', default=datetime.now)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
+    last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', default=datetime.now)
+    created_at = jmodels.jDateTimeField(verbose_name='تاریخ ایجاد', auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(verbose_name='آخرین تغییر', auto_now=True)
 
     def get_price(self):
         return self.price * (self.discount // 100)
