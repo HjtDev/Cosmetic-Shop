@@ -2,9 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User
 from .forms import UserCreationForm, UserChangeForm
-from django.utils.html import format_html
 from django.contrib.auth.models import Group
-
 
 admin.site.unregister(Group)
 
@@ -58,5 +56,3 @@ class UserAdmin(UserAdmin):
         ('دسترسی ها', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('تاریخ ها', {'fields': ('last_login', 'date_joined')}),
     )
-
-
