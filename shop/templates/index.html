@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6 justify-content-center">
                     {% for product in products %}
                         <div class="col-6 col-lg-4 mb-4 mb-sm-9">
                         <!--== Start Product Item ==-->
@@ -166,100 +166,20 @@
         <!--== Start Product Banner Area Wrapper ==-->
         <section>
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-lg-4">
+                <div class="row justify-content-center">
+                    {% for big_category in big_categories %}
+                    	<div class="col-sm-6 col-lg-4 mt-sm-2 mt-6">
                         <!--== Start Product Category Item ==-->
-                        <a href="#" class="product-banner-item">
-                            <img src="{% static 'images/shop/banner/1.webp' %}" width="370" height="370" alt="Image-HasTech">
-                        </a>
+                            <a href="#" class="product-banner-item">
+                                <img src="{{ big_category.icon.url }}" width="370" height="370" alt="{{ big_category.name }}">
+                            </a>
                         <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-sm-0 mt-6">
-                        <!--== Start Product Category Item ==-->
-                        <a href="#" class="product-banner-item">
-                            <img src="{% static 'images/shop/banner/2.webp' %}" width="370" height="370" alt="Image-HasTech">
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-lg-0 mt-6">
-                        <!--== Start Product Category Item ==-->
-                        <a href="#" class="product-banner-item">
-                            <img src="{% static 'images/shop/banner/3.webp' %}" width="370" height="370" alt="Image-HasTech">
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
         <!--== End Product Banner Area Wrapper ==-->
-
-        <!--== Start Blog Area Wrapper ==-->
-        <section class="section-space">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center">
-                            <h2 class="title">پست های وبلاگ</h2>
-                            <p> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-n9">
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="#" class="thumb">
-                                <img src="{% static 'images/blog/1.webp' %}" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category" href="#">زیبایی</a>
-                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
-                                    <li class="post-date">1402 - 08 - 15</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="#" class="thumb">
-                                <img src="{% static 'images/blog/2.webp' %}" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category post-category-two" data-bg-color="#A49CFF" href="#">زیبایی</a>
-                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
-                                    <li class="post-date">1402 - 08 - 15</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="#" class="thumb">
-                                <img src="{% static 'images/blog/3.webp' %}" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="#">زیبایی</a>
-                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
-                                    <li class="post-date">1402 - 08 - 15</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Blog Area Wrapper ==-->
 
         <!--== Start News Letter Area Wrapper ==-->
         <section class="section-space pt-0">

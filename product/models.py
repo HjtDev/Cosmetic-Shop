@@ -8,9 +8,12 @@ from account.models import User
 
 
 class Category(models.Model):
+    objects = jmodels.jManager()
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    icon = ResizedImageField(verbose_name='آیکون', upload_to='category/icon', size=[80, 80], blank=True, null=True)
+    icon = ResizedImageField(verbose_name='آیکون', upload_to='category/icon', blank=True, null=True)
+    big = models.BooleanField(verbose_name='دسته بندی بزرگ', default=False)
+    updated_at = models.DateTimeField(verbose_name='آخرین تغییر', auto_now=True)
 
     class Meta:
         ordering = ['name']
