@@ -45,13 +45,15 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
+    list_display = ('name', 'slug', 'big')
+    list_filter = ('big',)
+    list_editable = ('big',)
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'is_visible')
+    list_display = ('product', 'user', 'text', 'is_visible')
     list_filter = (
         ('created_at', JDateFieldListFilter),
         ('updated_at', JDateFieldListFilter),

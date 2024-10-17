@@ -8,8 +8,12 @@ from account.models import User
 
 
 class Category(models.Model):
+    objects = jmodels.jManager()
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
+    icon = ResizedImageField(verbose_name='آیکون', upload_to='category/icon', blank=True, null=True)
+    big = models.BooleanField(verbose_name='دسته بندی بزرگ', default=False)
+    updated_at = models.DateTimeField(verbose_name='آخرین تغییر', auto_now=True)
 
     class Meta:
         ordering = ['name']
@@ -21,6 +25,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class VisibleManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_visible=True)
 
 
 class Product(models.Model):
@@ -39,6 +48,7 @@ class Product(models.Model):
     inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار')
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
+    visible_products = VisibleManager()
     last_sell = jmodels.jDateTimeField(verbose_name='آخرین فروش', blank=True, null=True)
     created_at = jmodels.jDateTimeField(verbose_name='تاریخ ایجاد', auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(verbose_name='آخرین تغییر', auto_now=True)
@@ -52,7 +62,7 @@ class Product(models.Model):
         ]
 
     def get_price(self):
-        return self.price * (self.discount // 100)
+        return int(self.price * (1 - (self.discount / 100))) if self.discount else self.price
 
     def __str__(self):
         return self.title
@@ -60,7 +70,7 @@ class Product(models.Model):
 
 def image_path(instance, filename):
     current_date = datetime.now()
-    return f'product/{current_date.year}/{current_date.month}/{instance.product.title}/{filename}'
+    return f'product/{current_date.year}/{current_date.month}/{instance.product.slug}/{filename}'.replace(' ', '-')
 
 
 class Image(models.Model):

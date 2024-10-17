@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os.path
 from pathlib import Path
 from django.contrib import admin
+import locale
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,6 +123,8 @@ LANGUAGE_CODE = 'fa-ir'
 
 TIME_ZONE = 'Asia/Tehran'
 
+locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
+
 USE_I18N = True
 
 USE_TZ = False
@@ -160,6 +163,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # DJANGORESIZED_DEFAULT_SCALE = 0.5
 # DJANGORESIZED_DEFAULT_QUALITY = 75
 # DJANGORESIZED_DEFAULT_KEEP_META = True
-DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
-DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'PNG'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {
+    'JPEG': ".jpg",
+    'PNG': ".png",
+    'WEBP': ".webp",
+}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = False
