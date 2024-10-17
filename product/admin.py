@@ -51,7 +51,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'is_visible')
+    list_display = ('product', 'user', 'text', 'is_visible')
     list_filter = (
         ('created_at', JDateFieldListFilter),
         ('updated_at', JDateFieldListFilter),
