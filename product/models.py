@@ -10,6 +10,7 @@ from account.models import User
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
+    icon = ResizedImageField(verbose_name='آیکون', upload_to='category/icon', size=[80, 80], crop=['middle', 'center'], blank=True, null=True)
 
     class Meta:
         ordering = ['name']
