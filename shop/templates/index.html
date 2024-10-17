@@ -94,7 +94,7 @@
                     	<div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-t mt-sm-6 mt-4">
                         <!--== Start Product Category Item ==-->
                         <a href="#" class="product-category-item" data-bg-color="{% cycle '#DFE4FF' '#FFEDB4' '#FFEACC' '#FFF3DA' '#FFDAE0' '#FFF3DA' %}">
-                            <img class="icon" src="{% static 'images/shop/category/3.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <img class="icon" src="{% if category.icon %}{{ category.icon.url }}{% else %}{% static 'images/shop/category/3.webp' %}{% endif %}" width="80" height="80" alt="Image-HasTech">
                             <h3 class="title">{{ category.name }}</h3>
                         </a>
                         <!--== End Product Category Item ==-->
