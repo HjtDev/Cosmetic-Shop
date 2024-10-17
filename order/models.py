@@ -68,8 +68,8 @@ class Transaction(models.Model):
         REFUND = 'بازگشت وجه', _('بازگشت وجه')
 
     class TransactionStatusChoice(models.TextChoices):
-        PAID = 'پرداخت موفق'
-        FAILED = 'پرداخت ناموفق'
+        PAID = 'پرداخت موفق', _('پرداخت موفق')
+        FAILED = 'پرداخت ناموفق', _('پرداخت ناموفق')
 
     objects = jmodels.jManager()
     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='transactions', verbose_name='کاربر',
@@ -86,4 +86,4 @@ class Transaction(models.Model):
         ordering = ('created_at',)
 
     def __str__(self):
-        return f'Transaction #{self.id}'
+        return f'سفارش شماره {self.id}'
