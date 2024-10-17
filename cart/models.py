@@ -4,15 +4,23 @@ from product.models import Product
 
 
 class Cart:
-    def __init__(self, request: WSGIRequest):
-        self.cart = request.session
-        if not self.cart.get('cart'):
-            self.cart['cart'] = {}
-        if not self.cart.get('products'):
-            self.cart['products'] = {}  # Initialize products if not present
+    def __init__(self, request):
+        self.session = request.session
+        cart = self.session.get('cart')
+
+        # Initialize cart if it doesn't exist
+        if not cart:
+            cart = self.session['cart'] = {}
+
+        self.cart = cart
+
+        # Ensure 'products' is initialized
+        if 'products' not in self.cart:
+            self.cart['products'] = {}
 
     def save(self):
-        self.cart.modified = True
+        """Mark the session as modified to save changes."""
+        self.session.modified = True
 
     def add(self, product_id, quantity):
         try:
@@ -29,6 +37,17 @@ class Cart:
             self.save()
         except KeyError:
             print('Failed to remove product from cart: Product does not exist in cart')
+
+    def get_total_cost(self):
+        total_cost = 0
+        for item in self.cart.get('products', {}).values():
+            try:
+                price = int(item['price'])
+                quantity = int(item['quantity'])
+                total_cost += price * quantity
+            except (ValueError, TypeError) as e:
+                print(f"Error calculating total cost for item {item}: {e}")
+        return total_cost
 
     def __iter__(self):
         # Fetch all products at once
@@ -51,6 +70,5 @@ class Cart:
         return sum(item['quantity'] for item in self.cart.get('products', {}).values())
 
     def clear(self):
-        """Remove the cart from the session."""
-        del self.cart['cart']
-        self.save()
+        """Clear the cart."""
+        del self.session['cart']
