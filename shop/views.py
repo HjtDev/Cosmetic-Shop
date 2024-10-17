@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http.response import JsonResponse
 from product.models import Product, Category
 from jdatetime import datetime
 
@@ -10,3 +11,24 @@ def home_view(request):
         'categories': Category.objects.all()
     }
     return render(request, 'index.html', context)
+
+
+def like_view(request):
+    if request.method == 'GET':
+        try:
+            slug = request.GET.get('slug')
+            if slug and request.user.is_authenticated:
+                product = Product.visible_products.get(slug=slug)
+                if not request.user in product.likes.all():
+                    product.likes.add(request.user)
+                    liked = True
+                else:
+                    product.likes.remove(request.user)
+                    liked = False
+                product.save()
+                return JsonResponse({'liked': liked})
+            else:
+                return JsonResponse({'user': True})
+        except:
+            return JsonResponse({'error': 'Failed to like this product'})
+    return JsonResponse({'error': 'Request method is invalid'})
