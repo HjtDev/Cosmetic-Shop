@@ -1,0 +1,917 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}
+	صفحه اصلی
+{% endblock %}
+
+{% block content %}
+
+    <main class="main-content">
+
+        <!--== Start Hero Area Wrapper ==-->
+        <section class="hero-slider-area position-relative">
+            <div class="swiper hero-slider-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide hero-slide-item">
+                        <div class="container">
+                            <div class="row align-items-center position-relative">
+                                <div class="col-12 col-md-6">
+                                    <div class="hero-slide-content">
+                                        <div class="hero-slide-text-img"><img src="{% static 'images/slider/text-theme.webp' %}" width="427" height="232" alt="Image"></div>
+                                        <h2 class="hero-slide-title">محصـول تـازه</h2>
+                                        <p class="hero-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود</p>
+                                        <a class="btn btn-border-dark" href="#">هم اکنون خریداری کنید</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="hero-slide-thumb">
+                                        <img src="{% static 'images/slider/slider1.webp' %}" width="841" height="832" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide-text-shape"><img src="{% static 'images/slider/text1.webp' %}" width="70" height="955" alt="Image"></div>
+                        <div class="hero-slide-social-shape"></div>
+                    </div>
+                    <div class="swiper-slide hero-slide-item">
+                        <div class="container">
+                            <div class="row align-items-center position-relative">
+                                <div class="col-12 col-md-6">
+                                    <div class="hero-slide-content">
+                                        <div class="hero-slide-text-img"><img src="{% static 'images/slider/text-theme.webp' %}" width="427" height="232" alt="Image"></div>
+                                        <h2 class="hero-slide-title">کـرم صـورت</h2>
+                                        <p class="hero-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود</p>
+                                        <a class="btn btn-border-dark" href="#">هم اکنون خریداری کنید</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="hero-slide-thumb">
+                                        <img src="{% static 'images/slider/slider2.webp' %}" width="841" height="832" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide-text-shape"><img src="{% static 'images/slider/text1.webp' %}" width="70" height="955" alt="Image"></div>
+                        <div class="hero-slide-social-shape"></div>
+                    </div>
+                </div>
+                <!--== Add Pagination ==-->
+                <div class="hero-slider-pagination"></div>
+            </div>
+            <div class="hero-slide-social-media">
+                <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+            </div>
+        </section>
+        <!--== End Hero Area Wrapper ==-->
+
+        <!--== Start Product Category Area Wrapper ==-->
+        <section class="section-space pb-0">
+            <div class="container">
+                <div class="row g-3 g-sm-6">
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item">
+                            <img class="icon" src="{% static 'images/shop/category/1.webp' %}" width="70" height="80" alt="Image-HasTech">
+                            <h3 class="title">مراقبت از خرگوش</h3>
+                            <span class="flag-new">جدید</span>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item" data-bg-color="#FFEDB4">
+                            <img class="icon" src="{% static 'images/shop/category/2.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <h3 class="title">مراقبت از پوست</h3>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-0 mt-sm-6 mt-4">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item" data-bg-color="#DFE4FF">
+                            <img class="icon" src="{% static 'images/shop/category/3.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <h3 class="title">رژ لب</h3>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item" data-bg-color="#FFEACC">
+                            <img class="icon" src="{% static 'images/shop/category/4.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <h3 class="title">پوست صورت</h3>
+                            <span data-bg-color="#835BF4" class="flag-new">فروش</span>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item" data-bg-color="#FFDAE0">
+                            <img class="icon" src="{% static 'images/shop/category/5.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <h3 class="title">رژگونه</h3>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-category-item" data-bg-color="#FFF3DA">
+                            <img class="icon" src="{% static 'images/shop/category/6.webp' %}" width="80" height="80" alt="Image-HasTech">
+                            <h3 class="title">طبیعی
+                            </h3>
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Category Area Wrapper ==-->
+
+        <!--== Start Product Area Wrapper ==-->
+        <section class="section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">فـروش بـرتـر</h2>
+                            <p> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/1.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">محتوای قابل خواندن </a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/2.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">برس چشم مدرن</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/3.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">پاک کننده صورت و دست</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/4.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">ایمپالس دافل صورت</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/5.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">تسمه های یوگا اسپرایت </a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/6.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">کرم صورت فیوژن</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Area Wrapper ==-->
+
+        <!--== Start Product Banner Area Wrapper ==-->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-banner-item">
+                            <img src="{% static 'images/shop/banner/1.webp' %}" width="370" height="370" alt="Image-HasTech">
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mt-sm-0 mt-6">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-banner-item">
+                            <img src="{% static 'images/shop/banner/2.webp' %}" width="370" height="370" alt="Image-HasTech">
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mt-lg-0 mt-6">
+                        <!--== Start Product Category Item ==-->
+                        <a href="#" class="product-banner-item">
+                            <img src="{% static 'images/shop/banner/3.webp' %}" width="370" height="370" alt="Image-HasTech">
+                        </a>
+                        <!--== End Product Category Item ==-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Banner Area Wrapper ==-->
+
+        <!--== Start Product Area Wrapper ==-->
+        <section class="section-space pb-0">
+            <div class="container">
+                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/4.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">محتوای قابل خواندن</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/5.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">پاک کننده صورت و دست</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
+                        <!--== Start Product Item ==-->
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <a class="d-block" href="#">
+                                    <img src="{% static 'images/shop/6.webp' %}" width="370" height="450" alt="Image-HasTech">
+                                </a>
+                                <span class="flag-new">جدید</span>
+                                <div class="product-action">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                        <i class="fa fa-expand"></i>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <span>به سبد خرید اضافه کنید</span>
+                                    </button>
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                        <i class="fa fa-heart-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-rating">
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="reviews">150 بررسی</div>
+                                </div>
+                                <h4 class="title"><a href="#">ایمپالس دافلصورت</a></h4>
+                                <div class="prices">
+                                    <span class="price">21.00 تومان</span>
+                                    <span class="price-old">300.00</span>
+                                </div>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <span>به سبد خرید اضافه کنید</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--== End prPduct Item ==-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Area Wrapper ==-->
+
+        <!--== Start Blog Area Wrapper ==-->
+        <section class="section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">پست های وبلاگ</h2>
+                            <p> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-n9">
+                    <div class="col-sm-6 col-lg-4 mb-8">
+                        <!--== Start Blog Item ==-->
+                        <div class="post-item">
+                            <a href="#" class="thumb">
+                                <img src="images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                            </a>
+                            <div class="content">
+                                <a class="post-category" href="#">زیبایی</a>
+                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
+                                <ul class="meta">
+                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
+                                    <li class="post-date">1402 - 08 - 15</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--== End Blog Item ==-->
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-8">
+                        <!--== Start Blog Item ==-->
+                        <div class="post-item">
+                            <a href="#" class="thumb">
+                                <img src="{% static 'images/blog/2.webp' %}" width="370" height="320" alt="Image-HasTech">
+                            </a>
+                            <div class="content">
+                                <a class="post-category post-category-two" data-bg-color="#A49CFF" href="#">زیبایی</a>
+                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
+                                <ul class="meta">
+                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
+                                    <li class="post-date">1402 - 08 - 15</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--== End Blog Item ==-->
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-8">
+                        <!--== Start Blog Item ==-->
+                        <div class="post-item">
+                            <a href="#" class="thumb">
+                                <img src="{% static 'images/blog/3.webp' %}" width="370" height="320" alt="Image-HasTech">
+                            </a>
+                            <div class="content">
+                                <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="#">زیبایی</a>
+                                <h4 class="title"><a href="#"> ابزار است برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند </a></h4>
+                                <ul class="meta">
+                                    <li class="author-info"><span>توسط:</span> <a href="#">توماس دی مومن</a></li>
+                                    <li class="post-date">1402 - 08 - 15</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--== End Blog Item ==-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Blog Area Wrapper ==-->
+
+        <!--== Start News Letter Area Wrapper ==-->
+        <section class="section-space pt-0">
+            <div class="container">
+                <div class="newsletter-content-wrap" data-bg-img="images/photos/bg1.webp">
+                    <div class="newsletter-content">
+                        <div class="section-title mb-0">
+                            <h2 class="title">بـه ما بپیونـد</h2>
+                            <p> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند.</p>
+                        </div>
+                    </div>
+                    <div class="newsletter-form">
+                        <form>
+                            <input type="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                            <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End News Letter Area Wrapper ==-->
+
+    </main>
+
+    <!--== Scroll Top Button ==-->
+    <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
+
+    <!--== Start Product Quick Wishlist Modal ==-->
+    <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="product-action-view-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <div class="modal-action-messages">
+                            <i class="fa fa-check-square-o"></i> با موفقیت به لیست علاقه مندی ها اضافه شد!
+                        </div>
+                        <div class="modal-action-product">
+                            <div class="thumb">
+                                <img src="{% static 'images/shop/modal1.webp' %}" alt="Organic Food Juice" width="466" height="320">
+                            </div>
+                            <h4 class="product-name"><a href="#">محتوای قابل خواندن </a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!--== End Product Quick Wishlist Modal ==-->
+
+    <!--== Start Product Quick Add Cart Modal ==-->
+    <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="product-action-view-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <div class="modal-action-messages">
+                            <i class="fa fa-check-square-o"></i>با موفقیت به لیست علاقه مندی ها اضافه شد!
+                        </div>
+                        <div class="modal-action-product">
+                            <div class="thumb">
+                                <img src="{% static 'images/shop/modal1.webp' %}" alt="Organic Food Juice" width="466" height="320">
+                            </div>
+                            <h4 class="product-name"><a href="#">محتوای قابل خواندن</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!--== End Product Quick Add Cart Modal ==-->
+
+    <!--== Start Product Quick View Modal ==-->
+{#    <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">#}
+{#        <div class="modal-dialog modal-dialog-centered">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-body">#}
+{#                    <div class="product-quick-view-content">#}
+{#                        <button type="button" class="btn-close" data-bs-dismiss="modal">#}
+{#                            <span class="fa fa-close"></span>#}
+{#                        </button>#}
+{#                        <div class="container">#}
+{#                            <div class="row">#}
+{#                                <div class="col-lg-6">#}
+{#                                    <!--== Start Product Thumbnail Area ==-->#}
+{#                                    <div class="product-single-thumb">#}
+{#                                        <img src="{% static 'images/shop/quick-view1.webp' %}" width="544" height="560" alt="Image-HasTech">#}
+{#                                    </div>#}
+{#                                    <!--== End Product Thumbnail Area ==-->#}
+{#                                </div>#}
+{#                                <div class="col-lg-6">#}
+{#                                    <!--== Start Product Info Area ==-->#}
+{#                                    <div class="product-details-content">#}
+{#                                        <h5 class="product-details-collection">مجموعه ممتاز</h5>#}
+{#                                        <h3 class="product-details-title">پاک کن آفلاین</h3>#}
+{#                                        <div class="product-details-review mb-5">#}
+{#                                            <div class="product-review-icon">#}
+{#                                                <i class="fa fa-star-o"></i>#}
+{#                                                <i class="fa fa-star-o"></i>#}
+{#                                                <i class="fa fa-star-o"></i>#}
+{#                                                <i class="fa fa-star-o"></i>#}
+{#                                                <i class="fa fa-star-half-o"></i>#}
+{#                                            </div>#}
+{#                                            <button type="button" class="product-review-show">150 بررسی</button>#}
+{#                                        </div>#}
+{#                                        <p class="mb-6">برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند و در کنار این‌ها، همیشه از اصل بودن و کیفیت بالای خرید خود اطمینان داشته باشند.</p>#}
+{#                                        <div class="product-details-pro-qty">#}
+{#                                            <div class="pro-qty">#}
+{#                                                <input type="text" title="Quantity" value="01">#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="product-details-action">#}
+{#                                            <h4 class="price">254.00 تومان</h4>#}
+{#                                            <div class="product-details-cart-wishlist">#}
+{#                                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید</button>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!--== End Product Info Area ==-->#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </aside>#}
+    <!--== End Product Quick View Modal ==-->
+
+    <!--== Start Aside Menu ==-->
+    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h1 class="d-none" id="offcanvasExampleLabel">منوی کنار</h1>
+            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">منو <i class="fa fa-chevron-left"></i></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="offcanvasNav" class="offcanvas-menu-nav">
+                <ul>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">صفحه اصلی</a>
+                        <ul>
+                            <li><a href="#">صفحه اصلی یک</a></li>
+                            <li><a href="#">صفحه اصلی دو</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">در باره</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">فروشگاه</a>
+                        <ul>
+                            <li><a href="#" class="offcanvas-nav-item">چیدمان فروشگاه</a>
+                                <ul>
+                                    <li><a href="#">فروشگاه 3 ستون</a></li>
+                                    <li><a href="#">فروشگاه 4 ستون</a></li>
+                                    <li><a href="#">فروشگاه نوار کناری سمت راست</a></li>
+                                    <li><a href="#">فروشگاه نوار کناری سمت چپ</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">جزئیات محصول</a>
+                                <ul>
+                                    <li><a href="#" class="offcanvas-nav-item">جزئیات محصول معمولی</a></li>
+                                    <li><a href="#">جزئیات محصول</a></li>
+                                    <li><a href="#">جزئیات محصول گروهی</a></li>
+                                    <li><a href="#">محصول وابسته</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">صفحات دیگر</a>
+                                <ul>
+                                    <li><a href="#">سبد خرید</a></li>
+                                    <li><a href="#">پرداخت</a></li>
+                                    <li><a href="#">لیست علاقه مندیها</a></li>
+                                    <li><a href="#">مقایسه کنید</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">وبلاگ</a>
+                        <ul>
+                            <li><a class="offcanvas-nav-item" href="#">چیدمان وبلاگ</a>
+                                <ul>
+                                    <li><a href="#">شبکه وبلاگ</a></li>
+                                    <li><a href="#">منو سایدبار سمت راست وبلاگ</a></li>
+                                    <li><a href="#">منو سایدبار سمت چپ وبلاگ</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">جزئیات وبلاگ</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">صفحه</a>
+                        <ul>
+                            <li><a href="#">حساب کاربری</a></li>
+                            <li><a href="#">سوالات متداول</a></li>
+                            <li><a href="#">صفحه یافت نشد</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">ارتباط با ما</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </aside>
+    <!--== End Aside Menu ==-->
+
+{% endblock %}
