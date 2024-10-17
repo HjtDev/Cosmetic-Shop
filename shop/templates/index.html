@@ -72,60 +72,17 @@
         <section class="section-space pb-0">
             <div class="container">
                 <div class="row g-3 g-sm-6 justify-content-center">
-{#                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">#}
-{#                        <!--== Start Product Category Item ==-->#}
-{#                        <a href="#" class="product-category-item">#}
-{#                            <img class="icon" src="{% static 'images/shop/category/1.webp' %}" width="70" height="80" alt="Image-HasTech">#}
-{#                            <h3 class="title">مراقبت از خرگوش</h3>#}
-{#                            <span class="flag-new">جدید</span>#}
-{#                        </a>#}
-{#                        <!--== End Product Category Item ==-->#}
-{#                    </div>#}
-{#                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">#}
-{#                        <!--== Start Product Category Item ==-->#}
-{#                        <a href="#" class="product-category-item" data-bg-color="#FFEDB4">#}
-{#                            <img class="icon" src="{% static 'images/shop/category/2.webp' %}" width="80" height="80" alt="Image-HasTech">#}
-{#                            <h3 class="title">مراقبت از پوست</h3>#}
-{#                        </a>#}
-{#                        <!--== End Product Category Item ==-->#}
-{#                    </div>#}
 
                     {% for category in categories %}
                     	<div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-t mt-sm-6 mt-4">
                         <!--== Start Product Category Item ==-->
-                        <a href="#" class="product-category-item" data-bg-color="{% cycle '#DFE4FF' '#FFEDB4' '#FFEACC' '#FFF3DA' '#FFDAE0' '#FFF3DA' %}">
-                            <img class="icon" src="{% if category.icon %}{{ category.icon.url }}{% else %}{% static 'images/shop/category/3.webp' %}{% endif %}" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">{{ category.name }}</h3>
-                        </a>
+                            <a href="#" class="product-category-item" data-bg-color="{% cycle '#DFE4FF' '#FFEDB4' '#FFEACC' '#FFF3DA' '#FFDAE0' '#FFF3DA' %}">
+                                <img class="icon" src="{% if category.icon %}{{ category.icon.url }}{% else %}{% static 'images/shop/category/3.webp' %}{% endif %}" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">{{ category.name }}</h3>
+                            </a>
                         <!--== End Product Category Item ==-->
-                    </div>
+                        </div>
                     {% endfor %}
-{#                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">#}
-{#                        <!--== Start Product Category Item ==-->#}
-{#                        <a href="#" class="product-category-item" data-bg-color="#FFEACC">#}
-{#                            <img class="icon" src="{% static 'images/shop/category/4.webp' %}" width="80" height="80" alt="Image-HasTech">#}
-{#                            <h3 class="title">پوست صورت</h3>#}
-{#                            <span data-bg-color="#835BF4" class="flag-new">فروش</span>#}
-{#                        </a>#}
-{#                        <!--== End Product Category Item ==-->#}
-{#                    </div>#}
-{#                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">#}
-{#                        <!--== Start Product Category Item ==-->#}
-{#                        <a href="#" class="product-category-item" data-bg-color="#FFDAE0">#}
-{#                            <img class="icon" src="{% static 'images/shop/category/5.webp' %}" width="80" height="80" alt="Image-HasTech">#}
-{#                            <h3 class="title">رژگونه</h3>#}
-{#                        </a>#}
-{#                        <!--== End Product Category Item ==-->#}
-{#                    </div>#}
-{#                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">#}
-{#                        <!--== Start Product Category Item ==-->#}
-{#                        <a href="#" class="product-category-item" data-bg-color="#FFF3DA">#}
-{#                            <img class="icon" src="{% static 'images/shop/category/6.webp' %}" width="80" height="80" alt="Image-HasTech">#}
-{#                            <h3 class="title">طبیعی#}
-{#                            </h3>#}
-{#                        </a>#}
-{#                        <!--== End Product Category Item ==-->#}
-{#                    </div>#}
                 </div>
             </div>
         </section>
@@ -155,7 +112,7 @@
                                     <span class="flag-new">جدید</span>
                                 {% endif %}
                                 <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal-{{ product.slug }}">
                                         <i class="fa fa-expand"></i>
                                     </button>
                                     <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
@@ -199,6 +156,7 @@
                         </div>
                         <!--== End prPduct Item ==-->
                     </div>
+                        {% include 'partials/product_quick_view.html' with obj=product %}
                     {% endfor %}
                 </div>
             </div>
