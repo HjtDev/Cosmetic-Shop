@@ -21,10 +21,7 @@ l{% load static %}
             {% endfor %}
         </ul>
         <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span></p>
-        <a class="btn-total" href="#">مشاهده سبد خرید</a>
-        {% if not cart|length == 0 %}
-            <a class="btn-total" href="#">پرداخت</a>
-        {% endif %}
+        <a class="btn-total" href="{% url 'cart:cart_list' %}">مشاهده سبد خرید</a>
     </div>
 </aside>
 <!--== End Aside Cart ==-->

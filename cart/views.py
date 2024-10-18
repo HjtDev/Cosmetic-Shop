@@ -32,3 +32,6 @@ def add_view(request):
     else:
         return JsonResponse({'error': 'Invalid request method'})
 
+
+def cart_list_view(request):
+    return render(request, 'product-cart.html')
