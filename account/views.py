@@ -4,7 +4,7 @@ from random import randint, choice, shuffle
 from string import ascii_letters, digits, punctuation
 from jdatetime import datetime, timedelta
 from django.contrib.auth import login
-from .models import User
+from .models import User, EmailNotification
 
 
 def validate_phone(request, phone: str) -> int:
@@ -106,3 +106,15 @@ def verify_view(request):
     print('SMS Verification')
     print(request.session['auth'])
     return render(request, 'verify-code.html')
+
+
+def add_to_notifications_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', None)
+        if email is not None:
+            try:
+                EmailNotification.objects.create(email=email)
+            except Exception as e:
+                print('Exception', e)
+    return redirect('shop:home')
+    
