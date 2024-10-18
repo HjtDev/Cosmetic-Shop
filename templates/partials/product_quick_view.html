@@ -35,14 +35,14 @@
                                     <p class="mb-6">{{ obj.description }}</p>
                                     <div class="product-details-pro-qty">
                                         <div class="pro-qty">
-                                            <input type="text" title="Quantity" value="01">
+                                            <input type="text" title="Quantity" id="quick-quantity-{{ obj.slug }}" value="1" min="1" max="{{ obj.inventory }}">
                                         </div>
                                     </div>
                                     <div class="product-details-action">
                                         <h4 class="price">{{ obj.get_price }} تومان</h4>
                                         <div class="product-details-cart-wishlist">
-                                            <button type="button" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید
+                                            <button type="button" class="btn custom-add" data-slug="{{ obj.slug }}" data-bs-toggle="modal"
+                                                    data-bs-target="#action-CartAddModal-{{ obj.slug }}">به سبد خرید اضافه کنید
                                             </button>
                                         </div>
                                     </div>

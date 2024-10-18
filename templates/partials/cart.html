@@ -1,4 +1,4 @@
-l{% load static %}
+{% load static %}
 <!--== Start Aside Cart ==-->
 <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart"
        aria-labelledby="offcanvasRightLabel">
@@ -9,26 +9,19 @@ l{% load static %}
     </div>
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="#">
-                    <img src="{% static 'images/shop/cart1.webp' %}" width="68" height="84" alt="Image">
-                    <span class="product-title">دمپایی مردانه چرم</span>
-                </a>
-                <span class="product-price">1 × 69.00 تومان</span>
-            </li>
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="#">
-                    <img src="{% static 'images/shop/cart2.webp' %}" width="68" height="84" alt="Image">
-                    <span class="product-title">کفش مردانه </span>
-                </a>
-                <span class="product-price">1 × 20.00 تومان</span>
-            </li>
+            {% for item in cart %}
+                <li class="aside-product-list-item product-{{ item.product.slug }}">
+                    <a href="#" class="remove">×</a>
+                    <a href="#">
+                        <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
+                        <span class="product-title">{{ item.product.title }}</span>
+                    </a>
+                    <span class="product-price">{{ item.quantity }} × {{ item.price }} تومان</span>
+                </li>
+            {% endfor %}
         </ul>
-        <p class="cart-total"><span>جمع کل:</span><span class="amount">89.00 تومان</span></p>
-        <a class="btn-total" href="#">مشاهده سبد خرید</a>
-        <a class="btn-total" href="#">پرداخت</a>
+        <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span></p>
+        <a class="btn-total" href="{% url 'cart:cart_list' %}">مشاهده سبد خرید</a>
     </div>
 </aside>
 <!--== End Aside Cart ==-->
