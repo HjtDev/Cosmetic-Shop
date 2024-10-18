@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User
+from .models import User, EmailNotification
 from .forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
 
@@ -56,3 +56,11 @@ class UserAdmin(UserAdmin):
         ('دسترسی ها', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('تاریخ ها', {'fields': ('last_login', 'date_joined')}),
     )
+    
+
+@admin.register(EmailNotification)
+class EmailNotificationAdmin(admin.ModelAdmin):
+    list_display = ('email', 'active')
+    list_filter = ('active',)
+    search_fields = ('email',)
+    list_editable = ('active',)

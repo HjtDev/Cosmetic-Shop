@@ -193,8 +193,9 @@
                         </div>
                     </div>
                     <div class="newsletter-form">
-                        <form>
-                            <input type="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                        <form action="{% url 'account:add_email.view' %}" method="post">
+                            {% csrf_token %}
+                            <input type="email" name="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
                             <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
                         </form>
                     </div>

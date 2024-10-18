@@ -51,3 +51,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران'
+        
+
+class EmailNotification(models.Model):
+    email = models.EmailField(verbose_name='ایمیل', max_length=255, unique=True)
+    active = models.BooleanField(verbose_name='فعال', default=True)
+
+    class Meta:
+        verbose_name = 'خبر رسانی'
+        verbose_name_plural = 'خبر رسانی'
+
+    def __str__(self):
+        return self.email
