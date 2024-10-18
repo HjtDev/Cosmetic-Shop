@@ -1,4 +1,5 @@
 ﻿{% extends 'parent/base.html' %}
+{% load static %}
 
 {% block title %}
     سبد خرید
@@ -11,7 +12,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-style1">
             <div class="container">
                 <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="index-one.html">صفحه اصلی</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'shop:home' %}">صفحه اصلی</a></li>
                     <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
                 </ol>
             </div>
@@ -22,7 +23,7 @@
         <section class="section-space">
             <div class="container">
                 <div class="shopping-cart-form table-responsive">
-                    <form action="#" method="post">
+                    <form>
                         <table class="table text-center">
                             <thead>
                             <tr>
@@ -35,95 +36,44 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="tbody-item">
+                            {% for item in cart %}
+                                <tr class="tbody-item">
                                 <td class="product-remove">
                                     <a class="remove" href="javascript:void(0)">×</a>
                                 </td>
                                 <td class="product-thumbnail">
                                     <div class="thumb">
-                                        <a href="single-product.html">
-                                            <img src="files/images/shop/cart1.webp" width="68" height="84"
+                                        <a href="#">
+                                            <img src="{{ item.product.images.first.image.url }}" width="68" height="84"
                                                  alt="Image-HasTech">
                                         </a>
                                     </div>
                                 </td>
                                 <td class="product-name">
-                                    <a class="title" href="single-product.html">پاک کننده صورت و دست</a>
+                                    <a class="title" href="#">{{ item.product.title }}</a>
                                 </td>
                                 <td class="product-price">
-                                    <span class="price">115.00 تومان</span>
+                                    <span id="price-{{ item.product.slug }}" class="price">{{ item.price }} تومان</span>
                                 </td>
                                 <td class="product-quantity">
                                     <div class="pro-qty">
-                                        <input type="text" class="quantity" title="Quantity" value="1">
+                                        <input id="quantity-{{ item.product.slug }}" data-slug="{{ item.product.slug }}" type="text" class="quantity" title="Quantity" value="{{ item.quantity }}">
                                     </div>
                                 </td>
                                 <td class="product-subtotal">
-                                    <span class="price">115.00 تومان</span>
+                                    <span id="total-{{ item.product.slug }}" class="price">{{ item.total }} تومان</span>
                                 </td>
                             </tr>
-                            <tr class="tbody-item">
-                                <td class="product-remove">
-                                    <a class="remove" href="javascript:void(0)">×</a>
-                                </td>
-                                <td class="product-thumbnail">
-                                    <div class="thumb">
-                                        <a href="single-product.html">
-                                            <img src="files/images/shop/cart2.webp" width="68" height="84"
-                                                 alt="Image-HasTech">
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="product-name">
-                                    <a class="title" href="single-product.html">پاک کننده دست و صورت مرطوب</a>
-                                </td>
-                                <td class="product-price">
-                                    <span class="price">15.00 تومان</span>
-                                </td>
-                                <td class="product-quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" class="quantity" title="Quantity" value="1">
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="price">15.00 تومان</span>
-                                </td>
-                            </tr>
-                            <tr class="tbody-item">
-                                <td class="product-remove">
-                                    <a class="remove" href="javascript:void(0)">×</a>
-                                </td>
-                                <td class="product-thumbnail">
-                                    <div class="thumb">
-                                        <a href="single-product.html">
-                                            <img src="files/images/shop/cart3.webp" width="68" height="84"
-                                                 alt="Image-HasTech">
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="product-name">
-                                    <a class="title" href="single-product.html"> ایمپالس دافل صورت مرطوب</a>
-                                </td>
-                                <td class="product-price">
-                                    <span class="price">79.00 تومان</span>
-                                </td>
-                                <td class="product-quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" class="quantity" title="Quantity" value="1">
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="price">79.00 تومان</span>
-                                </td>
-                            </tr>
+                            {% endfor %}
                             <tr class="tbody-item-actions">
                                 <td colspan="6">
-                                    <button type="submit" class="btn-update-cart disabled" disabled>ویرایش سبد خرید
+                                    <button type="submit" class="btn-update-cart">ویرایش سبد خرید
                                     </button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
+                        {% csrf_token %}
                     </form>
                 </div>
                 <div class="row">
@@ -143,7 +93,7 @@
                                 <tr class="cart-subtotal">
                                     <th>جمع کل</th>
                                     <td>
-                                        <span class="amount">499.00 تومان</span>
+                                        <span id="total-cart-cost" class="amount">{{ cart.get_total_cost }} تومان</span>
                                     </td>
                                 </tr>
                                 <tr class="shipping-totals">
@@ -186,7 +136,10 @@
             </div>
         </section>
         <!--== End Product Area Wrapper ==-->
-
     </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/cart_list.js' %}"></script>
 {% endblock %}
 

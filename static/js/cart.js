@@ -2,10 +2,15 @@ $(document).ready(function () {
     $('.action-btn-cart').click(function () {
         let productSlug = $(this).data('slug');
         let quantity = 1;
+        let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        console.log(csrfToken);
 
         $.ajax({
             url: `${window.location.origin}/cart/add/`,
-            type: 'GET',
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken  // Include CSRF token in headers
+            },
             data: {
                 'slug': productSlug,
                 'quantity': quantity
@@ -27,9 +32,14 @@ $(document).ready(function () {
     $('.custom-add').click(function () {
         let productSlug = $(this).data('slug');
         let quantity = $('#quick-quantity-' + productSlug).val();
+        let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        console.log(csrfToken);
         $.ajax({
             url: `${window.location.origin}/cart/add/`,
-            type: 'GET',
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
             data: {
                 'slug': productSlug,
                 'quantity': quantity

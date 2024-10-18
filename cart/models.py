@@ -17,6 +17,9 @@ class Cart:
         # Ensure 'products' is initialized
         if 'products' not in self.cart:
             self.cart['products'] = {}
+        else:
+            for product_id, item in self.cart.get('products', {}).items():
+                self.cart['products'][product_id]['price'] = Product.objects.get(id=product_id).get_price()
 
     def save(self):
         """Mark the session as modified to save changes."""
@@ -27,7 +30,8 @@ class Cart:
             product = Product.visible_products.get(id=product_id)
 
             if self.cart['products'].get(str(product_id), None):
-                self.cart['products'][str(product_id)]['quantity'] = int(self.cart['products'][str(product_id)]['quantity']) + int(quantity)
+                self.cart['products'][str(product_id)]['quantity'] = int(
+                    self.cart['products'][str(product_id)]['quantity']) + int(quantity)
                 self.cart['products'][str(product_id)]['price'] = product.price
                 existed = True
             else:
@@ -38,6 +42,13 @@ class Cart:
             return existed
         except Product.DoesNotExist:
             print('Tried to add a non-existing object to the cart')
+
+    def update(self, product_id, quantity):
+        try:
+            self.cart.get('products', {}).get(str(product_id), {})['quantity'] = quantity
+            self.save()
+        except KeyError:
+            print('Tried to update a non-existing object to the cart')
 
     def remove(self, product_id):
         try:
@@ -69,6 +80,7 @@ class Cart:
                     'product': product,
                     'quantity': item['quantity'],
                     'price': item['price'],
+                    'total': int(item['price']) * int(item['quantity'])
                 }
             else:
                 print(f'Product with id {product_id} does not exist.')

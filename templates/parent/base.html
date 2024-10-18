@@ -22,7 +22,7 @@
 <!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
 <!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">-->
 
-    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <!--     Vendor CSS (Bootstrap & Icon Font) -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
     <!-- Plugins CSS (All Plugins Files) -->
@@ -47,7 +47,9 @@
     {% block content %}{% endblock %}
     {% include 'parent/footer.html' %}
     {% include 'partials/search_bar.html' %}
-    {% include 'partials/cart.html' %}
+    {% if request.path != '/cart/' %}
+        {% include 'partials/cart.html' %}
+    {% endif %} 
     {% include 'partials/navbar.html' %}
 </div>
 <!--== Wrapper End ==-->
