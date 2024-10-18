@@ -17,11 +17,12 @@ def add_view(request):
                     'title': product.title,
                     'quantity': cart.cart['products'][str(product.id)]['quantity'],
                     'price': product.get_price(),
-                    'slug': product.slug
+                    'slug': product.slug,
                 }
                 return JsonResponse({
                     'page': render(request, 'partials/cart_single_product.html', context).content.decode(),
-                    'existed': existed_in_cart
+                    'existed': existed_in_cart,
+                    'total_price': cart.get_total_cost()
                 })
 
             else:

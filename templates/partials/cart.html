@@ -20,7 +20,7 @@ l{% load static %}
                 </li>
             {% endfor %}
         </ul>
-        <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_cost }} تومان</span></p>
+        <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span></p>
         <a class="btn-total" href="#">مشاهده سبد خرید</a>
         {% if not cart|length == 0 %}
             <a class="btn-total" href="#">پرداخت</a>
