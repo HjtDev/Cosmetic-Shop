@@ -25,9 +25,17 @@ class Cart:
     def add(self, product_id, quantity):
         try:
             product = Product.visible_products.get(id=product_id)
-            item = {'quantity': quantity, 'price': str(product.get_price())}
-            self.cart['products'][str(product_id)] = item
+
+            if self.cart['products'].get(str(product_id), None):
+                self.cart['products'][str(product_id)]['quantity'] = int(self.cart['products'][str(product_id)]['quantity']) + int(quantity)
+                self.cart['products'][str(product_id)]['price'] = product.price
+                existed = True
+            else:
+                self.cart['products'][str(product_id)] = {'quantity': quantity, 'price': str(product.get_price())}
+                existed = False
+
             self.save()
+            return existed
         except Product.DoesNotExist:
             print('Tried to add a non-existing object to the cart')
 
@@ -67,7 +75,7 @@ class Cart:
 
     def __len__(self):
         """Return the total number of items in the cart."""
-        return sum(item['quantity'] for item in self.cart.get('products', {}).values())
+        return sum(int(item['quantity']) for item in self.cart.get('products', {}).values())
 
     def clear(self):
         """Clear the cart."""

@@ -114,7 +114,7 @@
                                     <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal-{{ product.slug }}">
                                         <i class="fa fa-expand"></i>
                                     </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal-{{ product.slug }}" data-slug="{{ product.slug }}">
                                         <span>به سبد خرید اضافه کنید</span>
                                     </button>
                                     <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal-{{ product.slug }}" data-slug="{{ product.slug }}">
@@ -148,7 +148,7 @@
                                 <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal-{{ product.slug }}" data-slug="{{ product.slug }}">
                                     <i class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
                                 </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal-{{ product.slug }}" data-slug="{{ product.slug }}">
                                     <span>به سبد خرید اضافه کنید</span>
                                 </button>
                             </div>
@@ -157,6 +157,7 @@
                     </div>
                         {% include 'partials/product_quick_view.html' with obj=product %}
                         {% include 'partials/product_like_modal.html' with obj=product %}
+                        {% include 'partials/add_to_cart_preview.html' with obj=product %}
                     {% endfor %}
                 </div>
             </div>
@@ -207,10 +208,11 @@
     <!--== Scroll Top Button ==-->
     <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
 
-    {% include 'partials/product_preview.html' %}
+    {% include 'partials/add_to_cart_preview.html' %}
 
 {% endblock %}
 
 {% block script %}
     <script src="{% static 'js/like.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
 {% endblock %}

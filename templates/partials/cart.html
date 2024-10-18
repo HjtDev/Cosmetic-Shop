@@ -10,8 +10,8 @@ l{% load static %}
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
             {% for item in cart %}
-                <li class="aside-product-list-item">
-                    <a href="#/" class="remove">×</a>
+                <li class="aside-product-list-item product-{{ item.product.slug }}">
+                    <a href="#" class="remove">×</a>
                     <a href="#">
                         <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
                         <span class="product-title">{{ item.product.title }}</span>
@@ -21,10 +21,10 @@ l{% load static %}
             {% endfor %}
         </ul>
         <p class="cart-total"><span>جمع کل:</span><span class="amount">{{ cart.get_total_cost }} تومان</span></p>
+        <a class="btn-total" href="#">مشاهده سبد خرید</a>
         {% if not cart|length == 0 %}
-            <a class="btn-total" href="#">مشاهده سبد خرید</a>
             <a class="btn-total" href="#">پرداخت</a>
-        {% endif %} 
+        {% endif %}
     </div>
 </aside>
 <!--== End Aside Cart ==-->
