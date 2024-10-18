@@ -3,7 +3,6 @@ $(document).ready(function () {
         let productSlug = $(this).data('slug');
         let quantity = 1;
         let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-        console.log(csrfToken);
 
         $.ajax({
             url: `${window.location.origin}/cart/add/`,
@@ -33,7 +32,6 @@ $(document).ready(function () {
         let productSlug = $(this).data('slug');
         let quantity = $('#quick-quantity-' + productSlug).val();
         let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-        console.log(csrfToken);
         $.ajax({
             url: `${window.location.origin}/cart/add/`,
             type: 'POST',

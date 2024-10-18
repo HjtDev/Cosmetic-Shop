@@ -10,8 +10,8 @@
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
             {% for item in cart %}
-                <li class="aside-product-list-item product-{{ item.product.slug }}">
-                    <a href="#" class="remove">×</a>
+                <li class="aside-product-list-item" id="product-{{ item.product.slug }}">
+                    <a class="remove quick-remove" data-slug="{{ item.product.slug }}">×</a>
                     <a href="#">
                         <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
                         <span class="product-title">{{ item.product.title }}</span>
@@ -20,8 +20,11 @@
                 </li>
             {% endfor %}
         </ul>
-        <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span></p>
+        <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span>
+        </p>
         <a class="btn-total" href="{% url 'cart:cart_list' %}">مشاهده سبد خرید</a>
     </div>
 </aside>
 <!--== End Aside Cart ==-->
+{% csrf_token %}
+<script src="{% static 'js/quick_cart_remove.js' %}"></script>
