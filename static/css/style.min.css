@@ -8162,3 +8162,7 @@ hr {
     font-size: 14px;
     padding: 18px 24px
 }
+
+.page-header-area {
+    margin-top: 8rem;
+}

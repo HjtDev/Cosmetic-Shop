@@ -30,7 +30,7 @@
                                         <li><a href="#">فروشگاه نوار کناری سمت چپ</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#/" class="mega-title">تک محصولی</a>
+                                <li><a href="#" class="mega-title">تک محصولی</a>
                                     <ul>
                                         <li><a href="#">جزئیات محصول معمولی</a></li>
                                         <li><a href="#">جزئیات محصول</a></li>
@@ -38,7 +38,7 @@
                                         <li><a href="#">محصول وابسته</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#/" class="mega-title">صفحات دیگر</a>
+                                <li><a href="#" class="mega-title">صفحات دیگر</a>
                                     <ul>
                                         <li><a href="#">سبد خرید</a></li>
                                         <li><a href="#">پرداخت</a></li>
@@ -107,7 +107,7 @@
                 </span>
                     </button>
 
-                    <a class="header-action-btn" href="{% url 'account:login' %}">
+                    <a class="header-action-btn" href="{% if request.user.is_authenticated %}#{% else %}{% url 'account:login' %}{% endif %}">
                                 <span class="icon">
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
                        xmlns:xlink="http://www.w3.org/1999/xlink">

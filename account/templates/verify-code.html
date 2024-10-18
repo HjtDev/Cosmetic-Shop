@@ -1,4 +1,4 @@
-﻿{% extends 'parent/base.html' %}
+{% extends 'parent/base.html' %}
 
 {% block title %}
     ورود به حساب
@@ -48,14 +48,13 @@
                             <div class="my-account-form">
                                 <form action="" method="post">
                                     <div class="form-group mb-6">
-                                        <label for="login_username">شماره تلفن <sup>*</sup></label>
-                                        <input type="text" id="login_username" name="username" autocomplete="login_username" autofocus placeholder="09121231234" maxlength="11" required>
+                                        <label for="auth_token">کد تایید <sup>*</sup></label>
+                                        <input type="text" id="auth_token" name="token" autofocus placeholder="123456" maxlength="6" minlength="6" required>
                                     </div>
                                     {% csrf_token %}
                                     <div class="form-group d-flex align-items-center mb-14 justify-content-lg-center">
-                                        <button type="submit" class="btn col-12">ورود</button>
+                                        <button type="submit" class="btn col-12">تایید</button>
                                     </div>
-                                    <a class="lost-password" href="#">رمز عبور خود را فراموش کرده اید؟</a>
                                 </form>
                             </div>
                         </div>
