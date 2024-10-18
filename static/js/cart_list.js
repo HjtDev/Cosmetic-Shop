@@ -14,7 +14,7 @@ $(document).ready(function () {
             let quantity = $(this).val(); // Get the quantity value
 
             // Push the slug and quantity into the array
-            cartItems.push({ slug: slug, quantity: quantity });
+            cartItems.push({slug: slug, quantity: quantity});
         });
 
         if (cartItems.length === 0) {
@@ -50,6 +50,36 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 console.log(xhr, status, error);
                 $('.btn-update-cart').prop('disabled', false);  // Re-enable button on error
+            }
+        });
+    });
+
+    $('.remove').click(function (event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        // Get the slug from the data attribute
+        let slug = $(this).data('slug'); // Extract slug from data attribute
+
+        // Get CSRF token from the hidden input field
+        let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+        // Send AJAX request to remove the product
+        $.ajax({
+            url: `${window.location.origin}/cart/remove/`,  // Adjust this URL based on your URL configuration
+            type: 'POST',
+            contentType: 'application/json',  // Send as JSON
+            headers: {
+                'X-CSRFToken': csrfToken  // Include CSRF token in headers
+            },
+            data: JSON.stringify({slug: slug}),  // Send slug as JSON
+            success: function (response) {
+                // Handle successful removal (e.g., update UI)
+                $(`#product-row-${slug}`).remove();  // Remove the corresponding table row
+                $('#total-cart-cost').text(response.total_cost + ' تومان');  // Update total cost if needed
+            },
+            error: function (xhr, status, error) {
+                console.error('Error removing product');
+                console.error(xhr, status, error);
             }
         });
     });

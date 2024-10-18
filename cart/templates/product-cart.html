@@ -37,9 +37,9 @@
                             </thead>
                             <tbody>
                             {% for item in cart %}
-                                <tr class="tbody-item">
+                                <tr id="product-row-{{ item.product.slug }}" class="tbody-item">
                                 <td class="product-remove">
-                                    <a class="remove" href="javascript:void(0)">×</a>
+                                    <a data-slug="{{ item.product.slug }}" class="remove">×</a>
                                 </td>
                                 <td class="product-thumbnail">
                                     <div class="thumb">
@@ -77,15 +77,7 @@
                     </form>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="coupon-wrap">
-                            <h4 class="title">تخفیف</h4>
-                            <p class="desc">اگر کد تخفیف خود را دارید وارد کنید.</p>
-                            <input type="text" class="form-control" placeholder="کد تخفیف">
-                            <button type="button" class="btn-coupon">درخواست تخفیف</button>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12">
                         <div class="cart-totals-wrap">
                             <h2 class="title">مجموع سبد خرید</h2>
                             <table>
@@ -96,39 +88,10 @@
                                         <span id="total-cart-cost" class="amount">{{ cart.get_total_cost }} تومان</span>
                                     </td>
                                 </tr>
-                                <tr class="shipping-totals">
-                                    <th>حمل دریایی</th>
-                                    <td>
-                                        <ul class="shipping-list">
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio1" checked>
-                                                <label for="radio1">نرخ ثابت:
-                                                    <span>3.00 تومان</span></label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio2">
-                                                <label for="radio2">ارسال رایگان</label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio3">
-                                                <label for="radio3">پیکاپ محلی</label>
-                                            </li>
-                                        </ul>
-                                        <p class="destination">حمل و نقل به
-                                            <strong> ایران</strong>.</p>
-                                        <a href="javascript:void(0)" class="btn-shipping-address">تغییر آدرس</a>
-                                    </td>
-                                </tr>
-                                <tr class="order-total">
-                                    <th>جمع</th>
-                                    <td>
-                                        <span class="amount">54.00 تومان</span>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
-                            <div class="text-end">
-                                <a href="shop-checkout.html" class="checkout-button">برای تسویه حساب اقدام کنید</a>
+                            <div class="text-center text-sm-end">
+                                <a href="#" class="checkout-button">برای تسویه حساب اقدام کنید</a>
                             </div>
                         </div>
                     </div>

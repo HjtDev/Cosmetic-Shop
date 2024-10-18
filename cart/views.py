@@ -58,7 +58,21 @@ def update_cart_view(request):
             return JsonResponse({'error': str(e)}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
-    
+
+
+def remove_from_cart_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            product = Product.visible_products.get(slug=data.get('slug'))
+            cart = Cart(request)
+            cart.remove(product.id)
+            return JsonResponse({'total_cost': cart.get_total_cost()})
+        except (Product.DoesNotExist, KeyError) as e:
+            print('Object does not exist or the slug is invalid', e)
+            return JsonResponse({'error': 'Invalid request parameters'})
+    return JsonResponse({'error': 'Invalid request method'})
+
 
 def cart_list_view(request):
     return render(request, 'product-cart.html')
