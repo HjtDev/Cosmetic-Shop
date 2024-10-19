@@ -97,6 +97,10 @@ def verify_view(request):
                 login(request, user)
                 request.session = session
                 request.session.modified = True
+                next_page = request.session.get('next_page', None)
+                if next_page is not None:
+                    del request.session['next_page']
+                    return redirect(next_page)
                 return redirect('shop:home')
             messages.error(request, 'کد تایید اشتباه است.')
         except Exception as e:

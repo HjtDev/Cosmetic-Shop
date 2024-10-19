@@ -19,6 +19,16 @@
         </nav>
         <!--== End Page Header Area Wrapper ==-->
 
+        {% if messages %}
+            <div class="row justify-content-lg-center align-items-center mt-5">
+                {% for message in messages %}
+                    <div class="alert alert-danger col-lg-6 col-12" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <!--== Start Product Area Wrapper ==-->
         <section class="section-space">
             <div class="container">
@@ -38,32 +48,37 @@
                             <tbody>
                             {% for item in cart %}
                                 <tr id="product-row-{{ item.product.slug }}" class="tbody-item">
-                                <td class="product-remove">
-                                    <a data-slug="{{ item.product.slug }}" class="remove">×</a>
-                                </td>
-                                <td class="product-thumbnail">
-                                    <div class="thumb">
-                                        <a href="#">
-                                            <img src="{{ item.product.images.first.image.url }}" width="68" height="84"
-                                                 alt="Image-HasTech">
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="product-name">
-                                    <a class="title" href="#">{{ item.product.title }}</a>
-                                </td>
-                                <td class="product-price">
-                                    <span id="price-{{ item.product.slug }}" class="price">{{ item.price }} تومان</span>
-                                </td>
-                                <td class="product-quantity">
-                                    <div class="pro-qty">
-                                        <input id="quantity-{{ item.product.slug }}" data-slug="{{ item.product.slug }}" type="text" class="quantity" title="Quantity" value="{{ item.quantity }}">
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span id="total-{{ item.product.slug }}" class="price">{{ item.total }} تومان</span>
-                                </td>
-                            </tr>
+                                    <td class="product-remove">
+                                        <a data-slug="{{ item.product.slug }}" class="remove">×</a>
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        <div class="thumb">
+                                            <a href="#">
+                                                <img src="{{ item.product.images.first.image.url }}" width="68"
+                                                     height="84"
+                                                     alt="Image-HasTech">
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="product-name">
+                                        <a class="title" href="#">{{ item.product.title }}</a>
+                                    </td>
+                                    <td class="product-price">
+                                        <span id="price-{{ item.product.slug }}"
+                                              class="price">{{ item.price }} تومان</span>
+                                    </td>
+                                    <td class="product-quantity">
+                                        <div class="pro-qty">
+                                            <input id="quantity-{{ item.product.slug }}"
+                                                   data-slug="{{ item.product.slug }}" type="text" class="quantity"
+                                                   title="Quantity" value="{{ item.quantity }}">
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal">
+                                        <span id="total-{{ item.product.slug }}"
+                                              class="price">{{ item.total }} تومان</span>
+                                    </td>
+                                </tr>
                             {% endfor %}
                             <tr class="tbody-item-actions">
                                 <td colspan="6">
@@ -91,7 +106,8 @@
                                 </tbody>
                             </table>
                             <div class="text-center text-sm-end">
-                                <a href="#" class="checkout-button">برای تسویه حساب اقدام کنید</a>
+                                <a href="{% url 'order:checkout' %}" class="checkout-button">برای تسویه حساب اقدام
+                                    کنید</a>
                             </div>
                         </div>
                     </div>

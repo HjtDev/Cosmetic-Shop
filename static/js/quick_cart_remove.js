@@ -22,7 +22,9 @@ $(document).ready(function () {
             success: function (response) {
                 // Handle successful removal (e.g., update UI)
                 $(`#product-${slug}`).remove();  // Remove the corresponding product list item
+                $(`#cart-item-checkout-${slug}`).remove();  // Remove the corresponding product list item
                 $('#cart-total-price').text(response.total_cost + ' تومان');  // Update total cost if needed
+                $('#checkout-total-cost').text(response.total_cost + ' تومان');  // Update total cost if needed
             },
             error: function (xhr, status, error) {
                 console.error('Error removing product');
