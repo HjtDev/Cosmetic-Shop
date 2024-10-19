@@ -104,7 +104,7 @@
                         <!--== Start Product Item ==-->
                         <div class="product-item">
                             <div class="product-thumb">
-                                <a class="d-block" href="#">
+                                <a class="d-block" href="{% url 'product:detail_view' product.slug %}">
                                     <img src="{{ product.images.first.image.url }}" width="370" height="450" alt="Image-HasTech">
                                 </a>
                                 {% if today == product.created_at.date %}
@@ -133,7 +133,7 @@
 {#                                    </div>#}
 {#                                    <div class="reviews">150 بررسی</div>#}
 {#                                </div>#}
-                                <h4 class="title"><a href="#">{{ product.title }}</a></h4>
+                                <h4 class="title"><a href="{% url 'product:detail_view' product.slug %}">{{ product.title }}</a></h4>
                                 <div class="prices">
                                     <span class="price">{{ product.get_price }} تومان</span>
                                     {% if product.discount %}
