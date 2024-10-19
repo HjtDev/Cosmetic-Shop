@@ -53,7 +53,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'text', 'is_visible')
+    list_display = ('product', 'user', 'text', 'rating', 'is_visible')
     list_filter = (
         ('created_at', JDateFieldListFilter),
         ('updated_at', JDateFieldListFilter),
@@ -61,6 +61,6 @@ class CommentAdmin(admin.ModelAdmin):
         'user',
         'is_visible'
     )
-    search_fields = ('text',)
+    search_fields = ('text', 'rating')
     ordering = ('created_at', 'updated_at')
-    list_editable = ('is_visible',)
+    list_editable = ('is_visible', 'rating')

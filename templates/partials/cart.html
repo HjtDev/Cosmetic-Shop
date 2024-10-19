@@ -12,7 +12,7 @@
             {% for item in cart %}
                 <li class="aside-product-list-item" id="product-{{ item.product.slug }}">
                     <a class="remove quick-remove" data-slug="{{ item.product.slug }}">×</a>
-                    <a href="#">
+                    <a href="{% url 'product:detail_view' item.product.slug %}">
                         <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
                         <span class="product-title">{{ item.product.title }}</span>
                     </a>

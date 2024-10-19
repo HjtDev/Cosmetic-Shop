@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_jalali.db import models as jmodels
 from jdatetime import datetime
 from django_resized import ResizedImageField
@@ -35,7 +36,8 @@ class VisibleManager(models.Manager):
 class Product(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(verbose_name='عنوان', max_length=75)
-    description = models.TextField(verbose_name='توضیحات')
+    short_description = models.TextField(verbose_name='توضیحات کوتاه', max_length=200)
+    long_description = models.TextField(verbose_name='توضیحات بلند')
     slug = models.SlugField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
     discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
@@ -63,6 +65,9 @@ class Product(models.Model):
 
     def get_price(self):
         return int(self.price * (1 - (self.discount / 100))) if self.discount else self.price
+
+    def get_absolute_url(self):
+        return reverse('product:detail_view', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -107,7 +112,8 @@ class Comment(models.Model):
     objects = jmodels.jManager()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments', verbose_name='محصول')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', verbose_name='کاربر')
-    text = models.TextField(verbose_name='متن', max_length=300)
+    text = models.TextField(verbose_name='متن', max_length=500)
+    rating = models.PositiveIntegerField(verbose_name='امتیاز', validators=[MaxValueValidator(5)], default=1)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=False)
 
     created_at = jmodels.jDateTimeField(verbose_name='تاریخ ایجاد', auto_now_add=True, editable=False)

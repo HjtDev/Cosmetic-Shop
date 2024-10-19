@@ -33,3 +33,6 @@ def like_view(request):
         except:
             return JsonResponse({'error': 'Failed to like this product'})
     return JsonResponse({'error': 'Request method is invalid'})
+
+
+
