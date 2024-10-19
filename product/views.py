@@ -9,6 +9,7 @@ def product_detail_view(request, slug):
     context = {
         'product': product,
         'comments': product.comments.filter(is_visible=True),
+        'related_products': Product.visible_products.exclude(id=product.id).filter(category=product.category).order_by('-updated_at')[:3]
     }
     return render(request, 'product-details.html', context)
 

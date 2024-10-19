@@ -36,7 +36,8 @@ class VisibleManager(models.Manager):
 class Product(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(verbose_name='عنوان', max_length=75)
-    description = models.TextField(verbose_name='توضیحات')
+    short_description = models.TextField(verbose_name='توضیحات کوتاه', max_length=200)
+    long_description = models.TextField(verbose_name='توضیحات بلند')
     slug = models.SlugField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
     discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
