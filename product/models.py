@@ -111,7 +111,7 @@ class Comment(models.Model):
     objects = jmodels.jManager()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments', verbose_name='محصول')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', verbose_name='کاربر')
-    text = models.TextField(verbose_name='متن', max_length=300)
+    text = models.TextField(verbose_name='متن', max_length=500)
     rating = models.PositiveIntegerField(verbose_name='امتیاز', validators=[MaxValueValidator(5)], default=1)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=False)
 

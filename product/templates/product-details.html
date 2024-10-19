@@ -1,5 +1,7 @@
 ﻿{% extends 'parent/base.html' %}
 {% load static %}
+{% load tags %}
+{% load jformat %}
 
 {% block title %}
     {{ product.title }}
@@ -100,30 +102,27 @@
                             <div class="tab-pane fade show active" id="review" role="tabpanel"
                                  aria-labelledby="review-tab">
                                 <!--== Start Reviews Content Item ==-->
-                                <div class="product-review-item">
+                                {% for comment in comments %}
+                                	<div class="product-review-item">
                                     <div class="product-review-top">
-                                        <div class="product-review-thumb">
-                                            <img src="files/images/shop/product-details/comment1.webp" alt="Images">
-                                        </div>
                                         <div class="product-review-content">
-                                            <span class="product-review-name">توماس دو</span>
-                                            <span class="product-review-designation">توسعه دهنده</span>
+                                            <span class="product-review-name">{{ comment.user.fullname }}</span>
+                                            <span class="product-review-designation">{{ comment.created_at|jformat:'%Y/%m/%d - %H:%M' }}</span>
                                             <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
+                                                {% comment_star comment.rating as fill_star %}
+                                                {% comment_o_star comment.rating as o_star %}
+                                               {% for _ in fill_star %}
+                                                    <i class="fa fa-star"></i>
+                                               {% endfor %}
+                                               {% for _ in o_star %}
+                                                    <i class="fa fa-star-o"></i>
+                                               {% endfor %}
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و
-                                        می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه
-                                        سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که
-                                        مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی
-                                        خرید داشته باشند</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
+                                    <p class="desc">{{ comment.text }}</p>
                                 </div>
+                                {% endfor %}
                                 <!--== End Reviews Content Item ==-->
                             </div>
                         </div>
@@ -135,7 +134,7 @@
                                 <div class="product-reviews-form">
                                     <div class="form-input-item">
                                         <textarea class="form-control" name="text" data-slug="{{ product.slug }}"
-                                                  placeholder="بازخورد خود را وارد کنید" id="comment-text"></textarea>
+                                                  placeholder="بازخورد خود را وارد کنید" id="comment-text" maxlength="500"></textarea>
                                     </div>
                                     <div class="form-input-item">
                                         <div class="form-ratings-item">
