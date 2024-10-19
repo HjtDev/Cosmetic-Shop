@@ -129,17 +129,17 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <div class="product-reviews-form-wrap">
-                            <h4 class="product-form-title">نظر خود را به اشتراک بگزارید</h4>
-                            <div class="product-reviews-form">
-                                <form action="#">
+                            {% csrf_token %}
+                            <div class="product-reviews-form-wrap">
+                                <h4 class="product-form-title">نظر خود را به اشتراک بگزارید</h4>
+                                <div class="product-reviews-form">
                                     <div class="form-input-item">
-                                        <textarea class="form-control"
-                                                  placeholder="بازخورد خود را وارد کنید"></textarea>
+                                        <textarea class="form-control" name="text" data-slug="{{ product.slug }}"
+                                                  placeholder="بازخورد خود را وارد کنید" id="comment-text"></textarea>
                                     </div>
                                     <div class="form-input-item">
                                         <div class="form-ratings-item">
-                                            <select id="product-review-form-rating-select" class="select-ratings">
+                                            <select id="product-review-form-rating-select" class="select-ratings" n>
                                                 <option value="1">01</option>
                                                 <option value="2">02</option>
                                                 <option value="3">03</option>
@@ -167,11 +167,10 @@
                                         </div>
                                     </div>
                                     <div class="form-input-item mb-0">
-                                        <button type="submit" class="btn">ارسال</button>
+                                        <button type="submit" id="send-comment" class="btn">ارسال</button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -351,4 +350,5 @@
 {% block script %}
     <script src="{% static 'js/like.js' %}"></script>
     <script src="{% static 'js/detail-add-cart.js' %}"></script>
+    <script src="{% static 'js/comment.js' %}"></script>
 {% endblock %}
