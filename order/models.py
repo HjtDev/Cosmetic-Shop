@@ -10,8 +10,7 @@ class Order(models.Model):
         PENDING = 'در صف برسی', _('در صف برسی')  # Pending for review
         CONFIRMED = 'تایید سفارش', _('تایید سفارش')  # Order confirmed
         PREPARING = 'آماده سازی سفارش', _('آماده سازی سفارش')  # Preparing order
-        SHIPPED = 'تحویل به پست', _('تحویل به پست')  # Shipped to post
-        DELIVERED = 'تحویل مرسوله به مشتری', _('تحویل مرسوله به مشتری')  # Delivered
+        DELIVERING = 'در حال ارسال', _('در حال ارسال')  # Delivered
         DONE = 'تکمیل شد', _('تکمیل شد')
 
     objects = jmodels.jManager()
@@ -30,6 +29,7 @@ class Order(models.Model):
     updated_at = jmodels.jDateTimeField(auto_now=True, verbose_name='آخرین تغییر')
     status = models.CharField(max_length=21, choices=OrderStatus.choices,
                               default=OrderStatus.PENDING, verbose_name='وضعیت')
+    extra_description = models.TextField(verbose_name='توضیحات اضافه', max_length=300, default='', blank=True)
     paid = models.BooleanField(default=False, verbose_name='پرداخت شده')
 
     class Meta:
@@ -60,6 +60,8 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    get_cost.short_description = 'هزینه نهایی'
 
 
 class Transaction(models.Model):
