@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_jalali.db import models as jmodels
 from jdatetime import datetime
 from django_resized import ResizedImageField
@@ -63,6 +64,9 @@ class Product(models.Model):
 
     def get_price(self):
         return int(self.price * (1 - (self.discount / 100))) if self.discount else self.price
+
+    def get_absolute_url(self):
+        return reverse('product:detail_view', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title

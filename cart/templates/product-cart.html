@@ -71,7 +71,7 @@
                                         <div class="pro-qty">
                                             <input id="quantity-{{ item.product.slug }}"
                                                    data-slug="{{ item.product.slug }}" type="text" class="quantity"
-                                                   title="Quantity" value="{{ item.quantity }}">
+                                                   title="Quantity" value="{{ item.quantity }}" min="1" max="{{ product.inventory }}">
                                         </div>
                                     </td>
                                     <td class="product-subtotal">

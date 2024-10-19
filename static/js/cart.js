@@ -16,7 +16,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if(response.existed) {
-                    $('.product-' + productSlug).remove()
+                    $('#product-' + productSlug).remove()
                 }
                 $('.aside-cart-product-list').append(response.page);
                 $('#cart-total-price').text(response.total_price + ' تومان');

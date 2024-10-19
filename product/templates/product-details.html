@@ -1,4 +1,5 @@
 ﻿{% extends 'parent/base.html' %}
+{% load static %}
 
 {% block title %}
     {{ product.title }}
@@ -10,22 +11,11 @@
         <!--== Start Page Header Area Wrapper ==-->
         <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="page-header-st3-content text-center text-md-start">
-                            <ol class="breadcrumb justify-content-center justify-content-md-start">
-                                <li class="breadcrumb-item"><a class="text-dark" href="index-one.html">صفحه اصلی</a>
-                                </li>
-                                <li class="breadcrumb-item active text-dark" aria-current="page">جزئیات محصول</li>
-                            </ol>
-                            <h2 class="page-header-title">جزئیات محصول</h2>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <h5 class="showing-pagination-results mt-5 mt-md-9 text-center text-md-end">نمایش محصول
-                            واحد</h5>
-                    </div>
-                </div>
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="{% url 'shop:home' %}">صفحه اصلی</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'shop:home' %}">محصولات</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+                </ol>
             </div>
         </section>
         <!--== End Page Header Area Wrapper ==-->
@@ -36,48 +26,43 @@
                 <div class="row product-details">
                     <div class="col-lg-6">
                         <div class="product-details-thumb">
-                            <img src="files/images/shop/product-details/2.webp" width="570" height="693" alt="Image">
-                            <span class="flag-new">جدید</span>
+                            <img src="{{ product.images.first.image.url }}" width="570" height="693" alt="Image">
+                            {% if today == product.created_at.date %}
+                                <span class="flag-new">جدید</span>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content">
-                            <h5 class="product-details-collection"> مجموعه ممتاز</h5>
-                            <h3 class="product-details-title">پاک کن آفلاین محصولات</h3>
-                            <div class="product-details-review mb-7">
-                                <div class="product-review-icon">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <button type="button" class="product-review-show">150 بررسی</button>
-                            </div>
-                            <p class="mb-7">برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند
-                                درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه سرلوحه شعارهای مدیاژ
-                                بوده و ما در این مجموعه تمامی تلاشمان این است که مشتری‌هایمان بتوانند با اطلاعات کامل از
-                                طیف گسترده‌ای از محصولات بازار، توانایی خرید داشته باشند و در کنار این‌ها، همیشه از اصل
-                                بودن و کیفیت بالای خرید خود اطمینان داشته باشند.</p>
+                            <h5 class="product-details-collection">{{ product.category.name }}</h5>
+                            <h3 class="product-details-title">{{ product.title }}</h3>
+                            <p class="mb-7">{{ product.description }}</p>
                             <div class="product-details-pro-qty">
                                 <div class="pro-qty">
-                                    <input type="text" title="Quantity" value="01">
+                                    <input type="text" title="Quantity" id="quick-quantity-detail" value="1" min="1"
+                                           max="{{ product.inventory }}">
                                 </div>
                             </div>
-                            <div class="product-details-shipping-cost">
-                                <input class="form-check-input" type="checkbox" value="" id="ShippingCost" checked>
-                                <label class="form-check-label" for="ShippingCost">حمل و نقل از ایالات متحده آمریکا،
-                                    هزینه حمل و نقل 4.22 تومان</label>
-                            </div>
                             <div class="product-details-action">
-                                <h4 class="price">254.00 تومان</h4>
+                                <div class="prices">
+                                    <span class="price">{{ product.get_price }} تومان</span>
+                                    {% if product.discount %}
+                                        <del class="price-old">{{ product.price }}</del>
+                                    {% endif %}
+                                </div>
                                 <div class="product-details-cart-wishlist">
-                                    <button type="button" class="btn-wishlist" data-bs-toggle="modal"
-                                            data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i>
+                                    <button type="button" class="btn-wishlist action-btn-wishlist"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#action-WishlistModal-{{ product.slug }}"
+                                            data-slug="{{ product.slug }}"><i
+                                            class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
                                     </button>
-                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#action-CartAddModal">به سبد خرید اضافه کنید
+                                    <button type="button" class="btn custom-detail-add" data-bs-toggle="modal"
+                                            data-slug="{{ product.slug }}"
+                                            data-bs-target="#action-CartAddModal-{{ product.slug }}">به سبد خرید اضافه
+                                        کنید
                                     </button>
+                                    {% csrf_token %}
                                 </div>
                             </div>
                         </div>
@@ -99,18 +84,11 @@
                             <div class="tab-pane" id="specification" role="tabpanel"
                                  aria-labelledby="specification-tab">
                                 <ul class="product-details-info-wrap">
-                                    <li><span>وزن</span>
-                                        <p>250 گرم</p>
-                                    </li>
-                                    <li><span>Dimensions</span>
-                                        <p>10 x 10 x 15 سانتیمتر</p>
-                                    </li>
-                                    <li><span>مواد</span>
-                                        <p>60% پنبه، 40% پلی استر</p>
-                                    </li>
-                                    <li><span>سایر اطلاعات</span>
-                                        <p>موروثی شورت جین پاگ سیتان لترپرس</p>
-                                    </li>
+                                    {% for feature in product.features.all %}
+                                        <li><span>{{ feature.key }}</span>
+                                            <p>{{ feature.value }}</p>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
 
                                 <p> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره
@@ -147,77 +125,17 @@
                                     <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                                 </div>
                                 <!--== End Reviews Content Item ==-->
-
-                                <!--== Start Reviews Content Item ==-->
-                                <div class="product-review-item product-review-reply">
-                                    <div class="product-review-top">
-                                        <div class="product-review-thumb">
-                                            <img src="files/images/shop/product-details/comment2.webp" alt="Images">
-                                        </div>
-                                        <div class="product-review-content">
-                                            <span class="product-review-name">توماس دو</span>
-                                            <span class="product-review-designation">توسعه دهنده</span>
-                                            <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و
-                                        می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه
-                                        سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که
-                                        مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی
-                                        خرید داشته باشند.</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                                </div>
-                                <!--== End Reviews Content Item ==-->
-
-                                <!--== Start Reviews Content Item ==-->
-                                <div class="product-review-item mb-0">
-                                    <div class="product-review-top">
-                                        <div class="product-review-thumb">
-                                            <img src="files/images/shop/product-details/comment3.webp" alt="Images">
-                                        </div>
-                                        <div class="product-review-content">
-                                            <span class="product-review-name">توماس دو</span>
-                                            <span class="product-review-designation">توسعه دهنده</span>
-                                            <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و
-                                        می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند. این همیشه
-                                        سرلوحه شعارهای مدیاژ بوده و ما در این مجموعه تمامی تلاشمان این است که
-                                        مشتری‌هایمان بتوانند با اطلاعات کامل از طیف گسترده‌ای از محصولات بازار، توانایی
-                                        خرید داشته باشند</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                                </div>
-                                <!--== End Reviews Content Item ==-->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="product-reviews-form-wrap">
-                            <h4 class="product-form-title">بازپخش بگذارید</h4>
+                            <h4 class="product-form-title">نظر خود را به اشتراک بگزارید</h4>
                             <div class="product-reviews-form">
                                 <form action="#">
                                     <div class="form-input-item">
                                         <textarea class="form-control"
                                                   placeholder="بازخورد خود را وارد کنید"></textarea>
-                                    </div>
-                                    <div class="form-input-item">
-                                        <input class="form-control" type="text" placeholder="نام و نام خانوادگی">
-                                    </div>
-                                    <div class="form-input-item">
-                                        <input class="form-control" type="email" placeholder="آأرس ایمیل">
                                     </div>
                                     <div class="form-input-item">
                                         <div class="form-ratings-item">
@@ -246,13 +164,6 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="reviews-form-checkbox">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                   id="ReviewsFormCheckbox" checked>
-                                            <label class="form-check-label" for="ReviewsFormCheckbox">رتبه بندی را به
-                                                صورت ناشناس ارائه دهید.
-                                            </label>
                                         </div>
                                     </div>
                                     <div class="form-input-item mb-0">
@@ -433,4 +344,11 @@
         <!--== End Product Area Wrapper ==-->
 
     </main>
+    {% include 'partials/add_to_cart_preview.html' with obj=product %}
+    {% include 'partials/product_like_modal.html' with obj=product %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/like.js' %}"></script>
+    <script src="{% static 'js/detail-add-cart.js' %}"></script>
 {% endblock %}

@@ -15,7 +15,7 @@
                             <img src="{{ obj.images.first.image.url }}" alt="Organic Food Juice" width="466"
                                  height="320">
                         </div>
-                        <h4 class="product-name"><a href="{% url 'product:detail_view' obj.slug %}">مشاهده محصول</a></h4>
+                        <h4 class="product-name"><a href="{{ obj.get_absolute_url }}">مشاهده محصول</a></h4>
                     </div>
                 </div>
             </div>

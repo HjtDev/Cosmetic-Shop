@@ -157,7 +157,7 @@
                     </div>
                         {% include 'partials/product_quick_view.html' with obj=product %}
                         {% include 'partials/product_like_modal.html' with obj=product %}
-                        {% include 'partials/add_to_cart_preview.html' with obj=product %}
+                        {% include 'partials/add_to_cart_preview.html' with obj=product slug=product.slug %}
                     {% endfor %}
                 </div>
             </div>
