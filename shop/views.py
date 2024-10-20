@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from product.models import Product, Category
+from .models import Faq
 from jdatetime import datetime
 
 
@@ -32,6 +33,15 @@ def like_view(request):
         except:
             return JsonResponse({'error': 'Failed to like this product'})
     return JsonResponse({'error': 'Request method is invalid'})
+
+
+def about_us_view(request):
+    return render(request, 'about-us.html')
+
+
+def faq_view(request):
+    return render(request, 'faq.html', {'faq': Faq.objects.filter(is_visible=True)})
+
 
 
 
