@@ -7,7 +7,6 @@ from jdatetime import datetime
 def home_view(request):
     context = {
         'products': Product.visible_products.all().order_by('-sold')[:6],
-        'today': datetime.now().date(),
         'categories': Category.objects.filter(big=False).order_by('-updated_at')[:12],
         'big_categories': Category.objects.filter(big=True).order_by('-updated_at')[:6]
     }
