@@ -4,6 +4,7 @@ from .forms import OrderForm
 from .models import OrderItem, Order
 from uuid import uuid4
 from cart.models import Cart
+from shop.sms import ORDER_SUBMITED, OWNER_ORDER_NOTIFICATION, send_sms
 
 
 def checkout_view(request):
@@ -26,9 +27,9 @@ def checkout_view(request):
                     quantity=item.get('quantity')
                 )
             cart.clear()
-            print('SMS Notification')
-            print(f'مشتری گرامی سفارش شما با کد {order.order_id} ثبت شد. با سپاس از خرید شما')
-            return redirect('shop:home')
+            send_sms(ORDER_SUBMITED, request.user.phone, code=order.order_id)
+            send_sms(OWNER_ORDER_NOTIFICATION, '09132017122', name=f'{order.first_name} {order.last_name}', code=order.order_id)
+            return redirect('account:profile')
         else:
             return render(request, 'product-checkout.html', {'form': form})
 
