@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, EmailNotification
-from .forms import UserCreationForm, UserChangeForm
+from .forms import UserCreationForm, UserChangeFormNew
 from django.contrib.auth.models import Group
 
 admin.site.unregister(Group)
@@ -12,7 +12,7 @@ class UserAdmin(UserAdmin):
     ordering = ['phone']
 
     add_form = UserCreationForm
-    form = UserChangeForm
+    form = UserChangeFormNew
     model = User
 
     search_fields = [
