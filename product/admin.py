@@ -32,6 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
         ('last_sell', JDateFieldListFilter),
         ('created_at', JDateFieldListFilter),
         ('updated_at', JDateFieldListFilter),
+        'category',
         'is_visible'
     )
     ordering = ('category', 'is_visible')
