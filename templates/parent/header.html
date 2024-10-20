@@ -107,7 +107,7 @@
                 </span>
                     </button>
 
-                    <a class="header-action-btn" href="{% if request.user.is_authenticated %}#{% else %}{% url 'account:login' %}{% endif %}">
+                    <a class="header-action-btn" href="{% if request.user.is_authenticated %}{% url 'account:profile' %}{% else %}{% url 'account:login' %}{% endif %}">
                                 <span class="icon">
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
                        xmlns:xlink="http://www.w3.org/1999/xlink">

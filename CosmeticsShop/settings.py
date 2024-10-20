@@ -173,3 +173,9 @@ DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {
     'WEBP': ".webp",
 }
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = False
+
+
+LOGIN_URL = 'account:login'
+LOGOUT_URL = 'account:logout'
+LOGIN_REDIRECT_URL = 'account:profile'
+LOGOUT_REDIRECT_URL = 'account:login'

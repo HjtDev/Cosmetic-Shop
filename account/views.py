@@ -1,10 +1,15 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from random import randint, choice, shuffle
 from string import ascii_letters, digits, punctuation
 from jdatetime import datetime, timedelta
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .models import User, EmailNotification
+from product.models import Product
+from .forms import UserUpdateProfileForm
+from django.contrib.auth import update_session_auth_hash
+from copy import deepcopy
 
 
 def validate_phone(request, phone: str) -> int:
@@ -55,6 +60,15 @@ def generate_password() -> str:
 #         return english_number
 #     return '000000'
 
+@login_required
+def logout_view(request):
+    cart = request.session['cart']
+    logout(request)
+    request.session['cart'] = cart
+    request.session.modified = True
+    messages.info(request, 'شما از حسابتان خارج شدید.')
+    return redirect('account:login')
+
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -99,6 +113,7 @@ def verify_view(request):
                 request.session.modified = True
                 next_page = request.session.get('next_page', None)
                 if next_page is not None:
+                    print('redirecting to', next_page)
                     del request.session['next_page']
                     return redirect(next_page)
                 return redirect('shop:home')
@@ -121,4 +136,59 @@ def add_to_notifications_view(request):
             except Exception as e:
                 print('Exception', e)
     return redirect('shop:home')
-    
+
+
+@login_required
+def profile_view(request):
+    user = request.user  # Get the current logged-in user
+
+    # Store session data before making any changes
+    session_data = request.session['cart']
+
+    if request.method == 'POST':
+        form = UserUpdateProfileForm(request.POST, instance=user)  # Bind form with POST data and current user instance
+
+        # Check if the form is valid
+        if form.is_valid():
+            # Check if current password is provided for password change
+            current_password = request.POST.get('password')
+            new_password1 = form.cleaned_data.get('password1')
+            new_password2 = form.cleaned_data.get('password2')
+
+            if current_password and user.check_password(current_password):
+                # If current password is correct, check new password fields
+                if new_password1 and new_password1 != new_password2:
+                    messages.error(request, 'رمز عبور جدید و تأیید رمز عبور مطابقت ندارد.')
+                    return redirect('account:profile')  # Redirect after error
+
+                elif new_password1:  # Only set a new password if it's provided
+                    user.set_password(new_password1)
+                    update_session_auth_hash(request, user)  # Keep the user logged in after password change
+
+            elif current_password:  # If current password was provided but is incorrect
+                messages.error(request, 'رمز عبور فعلی نادرست است.')
+                return redirect('account:profile')  # Redirect after error
+
+            # Save other fields regardless of whether the password was changed or not
+            form.save()
+            messages.success(request, 'اطلاعات شما با موفقیت تغییر یافت.')
+
+            request.session['cart'] = session_data  # Restore saved session data
+            request.session.modified = True
+
+            return redirect('account:profile')  # Redirect to a profile page or another appropriate page
+
+        else:
+            messages.error(request, 'لطفاً اطلاعات را به درستی وارد کنید.')  # General error for invalid form
+            return render(request, 'profile.html', {
+                'form': form,
+                'bought_products': Product.visible_products.filter(bought__in=[user]),
+            })
+
+    else:
+        form = UserUpdateProfileForm(instance=user)  # Prepopulate form with user's current data
+
+    return render(request, 'profile.html', {
+        'form': form,
+        'bought_products': Product.visible_products.filter(bought__in=[user]),
+    })
