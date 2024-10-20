@@ -2,68 +2,52 @@
 <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
        aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        <h1 class="d-none" id="offcanvasExampleLabel">منوی کنار</h1>
+        <h1 class="d-none" id="offcanvasExampleLabel">منو</h1>
         <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">منو <i
                 class="fa fa-chevron-left"></i></button>
     </div>
     <div class="offcanvas-body">
         <div id="offcanvasNav" class="offcanvas-menu-nav">
             <ul>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">صفحه اصلی</a>
-                    <ul>
-                        <li><a href="#">صفحه اصلی یک</a></li>
-                        <li><a href="#">صفحه اصلی دو</a></li>
-                    </ul>
-                </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">در باره</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url 'shop:home' %}">صفحه اصلی</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url 'shop:about_us' %}">درباره ما</a></li>
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">فروشگاه</a>
                     <ul>
-                        <li><a href="#" class="offcanvas-nav-item">چیدمان فروشگاه</a>
+                        <li><a href="#" class="offcanvas-nav-item">محصولات جدید</a>
                             <ul>
-                                <li><a href="#">فروشگاه 3 ستون</a></li>
-                                <li><a href="#">فروشگاه 4 ستون</a></li>
-                                <li><a href="#">فروشگاه نوار کناری سمت راست</a></li>
-                                <li><a href="#">فروشگاه نوار کناری سمت چپ</a></li>
+                                {% for n_product in new_products %}
+                                    <li><a href="{{ n_product.get_absolute_url }}">{{ n_product.title }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
-                        <li><a href="#" class="offcanvas-nav-item">جزئیات محصول</a>
+                        <li><a href="#" class="offcanvas-nav-item">محصولات پر فروش</a>
                             <ul>
-                                <li><a href="#" class="offcanvas-nav-item">جزئیات محصول معمولی</a></li>
-                                <li><a href="#">جزئیات محصول</a></li>
-                                <li><a href="#">جزئیات محصول گروهی</a></li>
-                                <li><a href="#">محصول وابسته</a></li>
+                                {% for m_s_product in most_sold_products %}
+                                    <li><a href="{{ m_s_product.get_absolute_url }}">{{ m_s_product.title }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
-                        <li><a href="#" class="offcanvas-nav-item">صفحات دیگر</a>
+                        <li><a href="#" class="offcanvas-nav-item">دسته بندی های پر فروش</a>
                             <ul>
-                                <li><a href="#">سبد خرید</a></li>
-                                <li><a href="#">پرداخت</a></li>
-                                <li><a href="#">لیست علاقه مندیها</a></li>
-                                <li><a href="#">مقایسه کنید</a></li>
+                                {% for m_s_category in most_sold_categories %}
+                                        <li><a href="{{ m_s_category.get_absolute_url }}">{{ m_s_category.name }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">وبلاگ</a>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">حساب کاربری</a>
                     <ul>
-                        <li><a class="offcanvas-nav-item" href="#">چیدمان وبلاگ</a>
-                            <ul>
-                                <li><a href="#">شبکه وبلاگ</a></li>
-                                <li><a href="#">منو سایدبار سمت راست وبلاگ</a></li>
-                                <li><a href="#">منو سایدبار سمت چپ وبلاگ</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">جزئیات وبلاگ</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'account:profile' %}">پروفایل</a></li>
+                            <li><a href="{% url 'account:logout' %}">خروج</a></li>
+                        {% else %}
+                            <li><a href="{% url 'account:login' %}">حساب کاربری</a></li>
+                        {% endif %}
                     </ul>
                 </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">صفحه</a>
-                    <ul>
-                        <li><a href="#">حساب کاربری</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">صفحه یافت نشد</a></li>
-                    </ul>
-                </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">ارتباط با ما</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url 'shop:faq' %}">سوالات متداول</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{% url 'shop:contact' %}">ارتباط با ما</a></li>
             </ul>
         </div>
 
