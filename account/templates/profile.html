@@ -114,7 +114,6 @@
                                                 <th>تاریخ</th>
                                                 <th>وضعیت</th>
                                                 <th>جمع</th>
-                                                <th>عمل</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -125,7 +124,6 @@
                                                         <td>{{ order.created_at|jformat:'%Y/%m/%d - %H:%M' }}</td>
                                                         <td>{{ order.status }}</td>
                                                         <td>{{ order.get_items_cost }} تومان</td>
-                                                        <td><a href="#" class="check-btn sqr-btn ">نمایش</a></td>
                                                     </tr>
                                                 {% endfor %}
                                             {% else %}
