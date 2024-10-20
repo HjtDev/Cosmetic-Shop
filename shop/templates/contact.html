@@ -1,0 +1,39 @@
+﻿{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}
+	ارتباط با ما
+{% endblock %}
+
+{% block content %}
+	<main class="main-content">
+
+        <!--== Start Contact Area Wrapper ==-->
+        <section class="section-space mt-5">
+            <div class="container">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <img class="icon" src="{% static 'images/icons/1.webp' %}" width="30" height="30" alt="Icon">
+                        <a href="tel://+11020303023">+11 0203 03023</a>
+                        <a href="tel://+11020303023">+11 0203 03023</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <img class="icon" src="{% static 'images/icons/2.webp' %}" width="30" height="30" alt="Icon">
+                        <a href="mailto://example@demo.com">example@demo.com</a>
+                        <a href="mailto://demo@example.com">demo@example.com</a>
+                    </div>
+                    <div class="contact-info-item mb-0">
+                        <img class="icon" src="{% static 'images/icons/3.webp' %}" width="30" height="30" alt="Icon">
+                        <p>میدان ولیعصر</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Contact Area Wrapper ==-->
+
+        <div class="map-area">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3359.110587738025!2d51.728487811885195!3d32.65650117360452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc4a18fc4af803%3A0x1d78fc89575b6242!2sIsfahan%20Province%2C%20Isfahan%2C%20Jey%20St%2C%20Iran!5e0!3m2!1sen!2sbd!4v1729433176185!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+    </main>
+{% endblock %}
