@@ -24,6 +24,9 @@ class Category(models.Model):
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
 
+    def get_absolute_url(self):
+        return reverse('product:category_view', kwargs={'slug': self.slug})
+
     def __str__(self):
         return self.name
 

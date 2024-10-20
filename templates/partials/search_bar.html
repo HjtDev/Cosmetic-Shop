@@ -12,10 +12,10 @@
                 <div class="search-note">
                     <p>شروع به تایپ کنید و اینتر را برای جستجو فشار دهید</p>
                 </div>
-                <form action="#" method="post">
+                <form action="{% url 'product:list_view' %}" method="get">
                     <div class="aside-search-form position-relative">
                         <label for="SearchInput" class="visually-hidden">جستجو</label>
-                        <input id="SearchInput" type="search" class="form-control" placeholder="جستجوی کل فروشگاه…">
+                        <input id="SearchInput" type="search" name="query" class="form-control" placeholder="جستجوی کل فروشگاه…">
                         <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                 </form>
