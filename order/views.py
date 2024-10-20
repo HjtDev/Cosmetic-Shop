@@ -38,8 +38,8 @@ def checkout_view(request):
             request.session['next_page'] = 'order:checkout'
             return redirect('account:login')
         if request.user.orders.exclude(status=Order.OrderStatus.DONE).exists():
-            messages.error(request, 'شما نمی توانید بیشتر از یک سفارش فعال داشته باشید.')
-            # return redirect('account:profile')
+            messages.error(request, 'شما نمی توانید بیشتر از یک سفارش فعال داشته باشید لطفا بخش سفارشات خود را برسی کرده و در صورت بروز مشکل با ما تماس بگیرید..')
+            return redirect('account:profile')
         if request.session.get('cart', None).get('products', None):
             form = OrderForm()
             return render(request, 'product-checkout.html', {'form': form})

@@ -1,5 +1,13 @@
 $(document).ready(function () {
-    $('.btn-update-cart').click(function (event) {
+    let updateButton = $('.btn-update-cart');
+    function showSaveButton() {
+        updateButton.removeAttr('hidden'); // Remove the hidden attribute
+    }
+
+    $('.inc').on('click', showSaveButton);
+    $('.dec').on('click', showSaveButton);
+
+    updateButton.click(function (event) {
         event.preventDefault(); // Prevent default form submission if needed
 
         // Disable the button
@@ -35,7 +43,6 @@ $(document).ready(function () {
             },
             data: data,  // Convert array to JSON string
             success: function (response) {
-                $('.btn-update-cart').prop('disabled', false);
                 $('#total-cart-cost').text(response.total_cost + ' تومان');
 
                 // Update each item's price and total price in the DOM
@@ -46,10 +53,18 @@ $(document).ready(function () {
                         $(`#total-${slug}`).text(item.total + ' تومان');  // Update total price for this item
                     }
                 }
+                updateButton.text('ذخیره شد');
+
+                // Set a timeout to hide the button after 3 seconds
+                setTimeout(function () {
+                    updateButton.prop('disabled', false); // Optionally disable the button again
+                    updateButton.text('ذخیره کردن تغییرات'); // Reset button text
+                    updateButton.attr('hidden', 'hidden'); // Hide the button again
+                }, 3000); // 3000 milliseconds = 3 seconds
             },
             error: function (xhr, status, error) {
                 console.log(xhr, status, error);
-                $('.btn-update-cart').prop('disabled', false);  // Re-enable button on error
+                updateButton.prop('disabled', false);  // Re-enable button on error
             }
         });
     });
