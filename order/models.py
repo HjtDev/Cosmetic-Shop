@@ -12,6 +12,7 @@ class Order(models.Model):
         PREPARING = 'آماده سازی سفارش', _('آماده سازی سفارش')  # Preparing order
         DELIVERING = 'در حال ارسال', _('در حال ارسال')  # Delivered
         DONE = 'تکمیل شد', _('تکمیل شد')
+        ABORTED = 'لغو شد', _('لغو شد')
 
     objects = jmodels.jManager()
     order_id = models.CharField(verbose_name='شماره سفارش', max_length=10, default='')
