@@ -21,7 +21,7 @@
                                         <div class="hero-slide-text-img"><img src="{% static 'images/slider/text-theme.webp' %}" width="427" height="232" alt="Image"></div>
                                         <h2 class="hero-slide-title">محصـول تـازه</h2>
                                         <p class="hero-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود</p>
-                                        <a class="btn btn-border-dark" href="#">هم اکنون خریداری کنید</a>
+                                        <a class="btn btn-border-dark" href="{% url 'product:list_view' %}">هم اکنون خریداری کنید</a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -42,7 +42,7 @@
                                         <div class="hero-slide-text-img"><img src="{% static 'images/slider/text-theme.webp' %}" width="427" height="232" alt="Image"></div>
                                         <h2 class="hero-slide-title">کـرم صـورت</h2>
                                         <p class="hero-slide-desc">خرید انواع لوازم آرایشی شامل آرایش صورت، لوازم آرایش چشم، بهداشت و زیبایی ناخن، آرایش مو و ابرو از برندهای میبلین، گارنیه، لورآل، اتود</p>
-                                        <a class="btn btn-border-dark" href="#">هم اکنون خریداری کنید</a>
+                                        <a class="btn btn-border-dark" href="{% url 'product:list_view' %}">هم اکنون خریداری کنید</a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -75,7 +75,7 @@
                     {% for category in categories %}
                     	<div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-t mt-sm-6 mt-4">
                         <!--== Start Product Category Item ==-->
-                            <a href="#" class="product-category-item" data-bg-color="{% cycle '#DFE4FF' '#FFEDB4' '#FFEACC' '#FFF3DA' '#FFDAE0' '#FFF3DA' %}">
+                            <a href="{{ category.get_absolute_url }}" class="product-category-item" data-bg-color="{% cycle '#DFE4FF' '#FFEDB4' '#FFEACC' '#FFF3DA' '#FFDAE0' '#FFF3DA' %}">
                                 <img class="icon" src="{% if category.icon %}{{ category.icon.url }}{% else %}{% static 'images/shop/category/3.webp' %}{% endif %}" width="80" height="80" alt="Image-HasTech">
                                 <h3 class="title">{{ category.name }}</h3>
                             </a>
@@ -171,7 +171,7 @@
                     {% for big_category in big_categories %}
                     	<div class="col-sm-6 col-lg-4 mt-sm-2 mt-6">
                         <!--== Start Product Category Item ==-->
-                            <a href="#" class="product-banner-item">
+                            <a href="{{ big_category.get_absolute_url }}" class="product-banner-item">
                                 <img src="{{ big_category.icon.url }}" width="370" height="370" alt="{{ big_category.name }}">
                             </a>
                         <!--== End Product Category Item ==-->
