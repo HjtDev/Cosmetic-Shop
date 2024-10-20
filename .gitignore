@@ -128,3 +128,5 @@ dmypy.json
 .vscode/
 
 media/category/icon/
+
+*.rar
