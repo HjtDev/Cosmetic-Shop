@@ -8,7 +8,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="widget-item">
                         <div class="widget-about">
-                            <a class="widget-logo" href="#">
+                            <a class="widget-logo" href="{% url 'shop:home' %}">
                                 <img src="{% static 'images/logo.webp' %}" width="95" height="68" alt="Logo">
                             </a>
                             <p class="desc"> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و
@@ -20,8 +20,7 @@
                     <div class="widget-item">
                         <h4 class="widget-title">اطلاعات</h4>
                         <ul class="widget-nav">
-                            <li><a href="#">وبلاگ</a></li>
-                            <li><a href="#">درباره ما</a></li>
+                            <li><a href="{% url 'shop:about_us' %}">درباره ما</a></li>
                             <li><a href="#">مخاطب</a></li>
                             <li><a href="#">حریم خصوصی</a></li>
                             <li><a href="#">ورود</a></li>

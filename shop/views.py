@@ -34,4 +34,8 @@ def like_view(request):
     return JsonResponse({'error': 'Request method is invalid'})
 
 
+def about_us_view(request):
+    return render(request, 'about-us.html')
+
+
 
