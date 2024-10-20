@@ -9,7 +9,7 @@ from .models import User, EmailNotification
 from product.models import Product
 from .forms import UserUpdateProfileForm
 from django.contrib.auth import update_session_auth_hash
-from copy import deepcopy
+from shop.sms import LOGIN_VERIFICATION, send_sms
 
 
 def validate_phone(request, phone: str) -> int:
@@ -122,8 +122,7 @@ def verify_view(request):
             print('Exception', e)
             messages.error(request, 'مشکلی پیش آمد لطفا دوباره تلاش کنید.')
             return redirect('account:login')
-    print('SMS Verification')
-    print(request.session['auth'])
+    send_sms(LOGIN_VERIFICATION, request.session['auth']['phone'], code=request.session['auth']['token'])
     return render(request, 'verify-code.html')
 
 
@@ -143,7 +142,7 @@ def profile_view(request):
     user = request.user  # Get the current logged-in user
 
     # Store session data before making any changes
-    session_data = request.session['cart']
+    session_data = request.session.get('cart')
 
     if request.method == 'POST':
         form = UserUpdateProfileForm(request.POST, instance=user)  # Bind form with POST data and current user instance
