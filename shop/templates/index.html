@@ -192,7 +192,7 @@
                             <p> برای خانم‌ها و آقایانی که قصد خرید محصولاتی عالی و اصلی را دارند و می‌خواهند درباره چیزی که می‌خرند اطلاعات کامل و واقعی داشته باشند.</p>
                         </div>
                     </div>
-                    <div class="newsletter-form">
+                    <div class="newsletter-form" id="email-notification">
                         <form action="{% url 'account:add_email.view' %}" method="post">
                             {% csrf_token %}
                             <input type="email" name="email" class="form-control" placeholder="ایمیل خود را وارد کنید">
