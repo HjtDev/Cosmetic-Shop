@@ -79,7 +79,7 @@ class Transaction(models.Model):
                              blank=True, null=True)
     reason = models.CharField(verbose_name='علت تراکنش', choices=ReasonChoice.choices, max_length=21)
     status = models.CharField(verbose_name='وضعیت تراکنش', choices=TransactionStatusChoice.choices, max_length=21)
-    description = models.TextField(verbose_name='توضیحات نراکنش', max_length=100)
+    description = models.TextField(verbose_name='توضیحات نراکنش')
     price = models.PositiveIntegerField(verbose_name='هزینه', default=0)
     created_at = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
 
