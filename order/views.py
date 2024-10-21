@@ -45,7 +45,6 @@ def checkout_view(request):
         if request.session.get('cart', None).get('products', None):
             cart = Cart(request)
             for item in cart:
-                print(item)
                 if item['product'].inventory == 0:
                     messages.error(request, 'یکی از محصولات انتخابی شما در انبار موجود نیست لطفا تا موجود شدن صبر نموده و یا جهت پیگیری بیشتر با پشتیبانی تماس بگیرید.')
                     return redirect('cart:cart_list')
