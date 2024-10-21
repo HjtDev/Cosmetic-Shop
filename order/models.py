@@ -89,4 +89,4 @@ class Transaction(models.Model):
         ordering = ('created_at',)
 
     def __str__(self):
-        return f'سفارش شماره {self.id}'
+        return f'تراکنش شماره {self.id}'

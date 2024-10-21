@@ -12,7 +12,7 @@ def paid_signal(sender, instance: Order, **kwargs):
     if not old_paid and instance.paid:
         if instance.status == Order.OrderStatus.PENDING:
             instance.status = Order.OrderStatus.CONFIRMED
-        transaction_text = f'برای سفارش {instance.order_id}'
+        transaction_text = f'Order: {instance.order_id}'
         for item in instance.items.all():
             item.product.bought.add(instance.user)
             item.product.inventory -= item.quantity
