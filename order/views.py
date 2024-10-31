@@ -29,6 +29,7 @@ def checkout_view(request):
             cart.clear()
             send_sms(ORDER_SUBMITED, request.user.phone, code=order.order_id)
             send_sms(OWNER_ORDER_NOTIFICATION, '09132017122', name=f'{order.first_name} {order.last_name}', code=order.order_id)
+            messages.success(request, 'سفارش شما ثبت شد.')
             return redirect('account:profile')
         else:
             return render(request, 'product-checkout.html', {'form': form})
@@ -42,6 +43,14 @@ def checkout_view(request):
             messages.error(request, 'شما نمی توانید بیشتر از یک سفارش فعال داشته باشید لطفا بخش سفارشات خود را برسی کرده و در صورت بروز مشکل با ما تماس بگیرید..')
             return redirect('account:profile')
         if request.session.get('cart', None).get('products', None):
+            cart = Cart(request)
+            for item in cart:
+                if item['product'].inventory == 0:
+                    messages.error(request, 'یکی از محصولات انتخابی شما در انبار موجود نیست لطفا تا موجود شدن صبر نموده و یا جهت پیگیری بیشتر با پشتیبانی تماس بگیرید.')
+                    return redirect('cart:cart_list')
+                if int(item['quantity']) > item['product'].inventory:
+                    messages.error(request, f'یکی از محصولات سبد خرید شما بیش از تعداد موجود در انبار است. ابتدا تعداد محصولات سفارشی خود را اصلاح کرده و آن را ذخیره کنید سپس مجددا برای ثبت سفارش اقدام فرمایید.')
+                    return redirect('cart:cart_list')
             form = OrderForm()
             return render(request, 'product-checkout.html', {'form': form})
         messages.error(request, 'سبد خرید شما خالی است.')

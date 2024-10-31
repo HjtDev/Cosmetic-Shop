@@ -42,6 +42,7 @@
                                 <th class="product-name">محصول</th>
                                 <th class="product-price">قیمت</th>
                                 <th class="product-quantity">تعداد</th>
+                                <th class="product-quantity">موجود</th>
                                 <th class="product-subtotal">جمع</th>
                             </tr>
                             </thead>
@@ -73,6 +74,10 @@
                                                    data-slug="{{ item.product.slug }}" type="text" class="quantity"
                                                    title="Quantity" value="{{ item.quantity }}" min="1" max="{{ product.inventory }}">
                                         </div>
+                                    </td>
+                                    <td class="product-price">
+                                        <span id="available"
+                                              class="price">{{ item.product.inventory }}</span>
                                     </td>
                                     <td class="product-subtotal">
                                         <span id="total-{{ item.product.slug }}"

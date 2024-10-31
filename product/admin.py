@@ -13,11 +13,13 @@ class ImageInline(admin.TabularInline):
     model = Image
     extra = 1
     fields = ('image',)
+    autocomplete_fields = ('product',)
 
 
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 1
+    autocomplete_fields = ('product', 'user')
 
 
 @admin.register(Product)
@@ -26,7 +28,7 @@ class ProductAdmin(admin.ModelAdmin):
     verbose_name_plural = 'محصولات'
     list_display = ('title', 'category', 'price', 'discount', 'inventory', 'is_visible')
     list_editable = ('price', 'discount', 'is_visible')
-    search_fields = ('title', 'description', 'slug')
+    search_fields = ('title', 'short_description', 'long_description', 'slug')
     prepopulated_fields = {'slug': ('title',)}
     list_filter = (
         ('last_sell', JDateFieldListFilter),
@@ -36,6 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
         'is_visible'
     )
     ordering = ('category', 'is_visible')
+    autocomplete_fields = ('category',)
 
     inlines = [
         FeatureInline,
@@ -50,6 +53,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ('big',)
     list_editable = ('big',)
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name', 'slug')
 
 
 @admin.register(Comment)
@@ -65,3 +69,4 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('text', 'rating')
     ordering = ('created_at', 'updated_at')
     list_editable = ('is_visible', 'rating')
+    autocomplete_fields = ('product', 'user')

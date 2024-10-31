@@ -81,6 +81,7 @@ def login_view(request):
             request.session['auth'] = {'id': user_id, 'phone': phone, 'token': str(randint(100000, 999999)),
                                        'time': expire.strftime('%Y-%m-%dT%H:%M:%S')}
             request.session.modified = True
+            send_sms(LOGIN_VERIFICATION, request.session['auth']['phone'], code=request.session['auth']['token'])
             return redirect('account:verify')
     return render(request, 'account-login.html')
 
@@ -122,7 +123,6 @@ def verify_view(request):
             print('Exception', e)
             messages.error(request, 'مشکلی پیش آمد لطفا دوباره تلاش کنید.')
             return redirect('account:login')
-    send_sms(LOGIN_VERIFICATION, request.session['auth']['phone'], code=request.session['auth']['token'])
     return render(request, 'verify-code.html')
 
 

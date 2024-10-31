@@ -6,6 +6,7 @@ from django_resized import ResizedImageField
 import os
 from django.core.validators import MaxValueValidator
 from account.models import User
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -39,9 +40,9 @@ class VisibleManager(models.Manager):
 class Product(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(verbose_name='عنوان', max_length=75)
-    short_description = models.TextField(verbose_name='توضیحات کوتاه', max_length=200)
-    long_description = models.TextField(verbose_name='توضیحات بلند')
-    slug = models.SlugField(verbose_name='اسلاگ', unique=True, max_length=75)
+    short_description = models.TextField(verbose_name='توضیحات کوتاه', max_length=200, blank=True, null=True)
+    long_description = models.TextField(verbose_name='توضیحات بلند', blank=True, null=True)
+    slug = models.CharField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
     discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
     likes = models.ManyToManyField(User, related_name='liked_products', blank=True,
@@ -50,7 +51,7 @@ class Product(models.Model):
                                     verbose_name='کسانی که این محصول را خریده اند')
     category = models.ForeignKey(Category, related_name='products', on_delete=models.DO_NOTHING,
                                  verbose_name='دسته بندی')
-    inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار')
+    inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار', default=0)
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
     visible_products = VisibleManager()
@@ -74,6 +75,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.slug)
+        return super().save(*args, **kwargs)
 
 
 def image_path(instance, filename):
