@@ -1,0 +1,67 @@
+﻿{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}
+    سوالات متداول
+{% endblock %}
+
+{% block content %}
+    <main class="main-content">
+        <!--== Start Page Header Area Wrapper ==-->
+        <nav aria-label="breadcrumb" class="breadcrumb-style1">
+            <div class="container">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="{% url 'shop:home' %}l">صفحه اصلی</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">سوالات متداول</li>
+                </ol>
+            </div>
+        </nav>
+
+        <!--== Start Faq Area Wrapper ==-->
+        <section class="faq-area">
+            <div class="container">
+                <div class="row flex-xl-row-reverse">
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="faq-thumb">
+                            <img src="{% static 'images/photos/faq-home.webp' %}" width="601" height="368" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="faq-content">
+                            <div class="faq-text-img"><img src="{% static 'images/photos/faq.webp' %}" width="199"
+                                                           height="169" alt="Image"></div>
+                            <h2 class="faq-title">سوالات متداول</h2>
+                            <div class="faq-line"></div>
+                            <p class="faq-desc">جواب سوالات معمولی را که در ذهنتان است را اینجا بیابید.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="accordion" id="FaqAccordion">
+                            {% for f in faq %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}"
+                                                aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                            {{ f.question }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}"
+                                         data-bs-parent="#FaqAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ f.answer }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Faq Area Wrapper ==-->
+
+    </main>
+{% endblock %}

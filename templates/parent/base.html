@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="fa">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Oriflame | {% block title %}{% endblock %}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="Oriflame - Cosmetic & Beauty Salon Website Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon" />
+    <meta name="author" content="Mohammad Hojjat Nikoobkaht" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.webp' %}">
+
+    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+    <!-- Font CSS -->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">-->
+
+    <!--     Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+    <!-- Jquery -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.3.2.min.js' %}"></script>
+    {% block header %}
+    	
+    {% endblock %}
+</head>
+
+<body>
+
+<!--== Wrapper Start ==-->
+<div class="wrapper">
+    {% include 'parent/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'parent/footer.html' %}
+    {% include 'partials/search_bar.html' %}
+    {% if request.path != '/cart/' %}
+        {% include 'partials/cart.html' %}
+    {% endif %} 
+    {% include 'partials/navbar.html' %}
+</div>
+<!--== Wrapper End ==-->
+
+<!-- JS Vendor, Plugins & Activation Script Files -->
+
+<!-- Vendors JS -->
+<script src="{% static 'js/modernizr-3.11.7.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Plugins JS -->
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/fancybox.min.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+
+<!-- Custom Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+{% block script %}
+	
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,162 @@
+﻿{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}
+    لیست محصولات
+{% endblock %}
+
+
+{% block content %}
+    <main class="main-content">
+
+        <!--== Start Page Header Area Wrapper ==-->
+        <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="page-header-st3-content text-center text-md-start">
+                            <ol class="breadcrumb justify-content-center justify-content-md-start">
+                                <li class="breadcrumb-item"><a class="text-dark" href="{% url 'shop:home' %}">صفحه
+                                    اصلی</a>
+                                </li>
+                                <li class="breadcrumb-item active text-dark" aria-current="page">محصولات</li>
+                            </ol>
+                            <h2 class="page-header-title">{{ title }}</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <h5 class="showing-pagination-results mt-5 mt-md-9 text-center text-md-end">نمایش
+                            نتایج {{ products.count }} عدد
+                            محصول</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Page Header Area Wrapper ==-->
+
+        <!--== Start Product Area Wrapper ==-->
+        <section class="section-space">
+            <div class="container">
+                <div class="row justify-content-between flex-xl-row-reverse">
+                    <div class="col-xl-9">
+                        <div class="row g-3 g-sm-6">
+                            {% for product in products %}
+                                <div class="col-6 col-lg-4 col-xl-4 mb-4 mb-sm-8">
+                                    <!--== Start Product Item ==-->
+                                    <div class="product-item product-st3-item">
+                                        <div class="product-thumb">
+                                            <a class="d-block" href="{{ product.get_absolute_url }}">
+                                                <img src="{{ product.images.first.image.url }}" width="370" height="450"
+                                                     alt="Image-HasTech">
+                                            </a>
+                                            {% if today == product.created_at.date %}
+                                                <span class="flag-new">جدید</span>
+                                            {% endif %}
+                                            <div class="product-action">
+                                                <button type="button" class="product-action-btn action-btn-quick-view"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#action-QuickViewModal-{{ product.slug }}"
+                                                        data-slug="{{ product.slug }}">
+                                                    <i class="fa fa-expand"></i>
+                                                </button>
+                                                <button type="button" class="product-action-btn action-btn-cart"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#action-CartAddModal-{{ product.slug }}"
+                                                        data-slug="{{ product.slug }}">
+                                                    <span>به سبد خرید اضافه کنید</span>
+                                                </button>
+                                                <button type="button" class="product-action-btn action-btn-wishlist"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#action-WishlistModal-{{ product.slug }}"
+                                                        data-slug="{{ product.slug }}">
+                                                    <i class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <h4 class="title"><a
+                                                    href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
+                                            <div class="prices">
+                                                <span class="price">{{ product.get_price }} تومان</span>
+                                                {% if product.discount %}
+                                                    <span class="price-old">{{ product.price }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="product-action-bottom">
+                                            <button type="button" class="product-action-btn action-btn-quick-view"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#action-QuickViewModal-{{ product.slug }}"
+                                                    data-slug="{{ product.slug }}">
+                                                <i class="fa fa-expand"></i>
+                                            </button>
+                                            <button type="button" class="product-action-btn action-btn-wishlist"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#action-WishlistModal-{{ product.slug }}"
+                                                    data-slug="{{ product.slug }}">
+                                                <i class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
+                                            </button>
+                                            <button type="button" class="product-action-btn action-btn-cart"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#action-CartAddModal-{{ product.slug }}"
+                                                    data-slug="{{ product.slug }}">
+                                                <span>به سبد خرید اضافه کنید</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--== End prPduct Item ==-->
+                                </div>
+                                {% include 'partials/product_quick_view.html' with obj=product %}
+                                {% include 'partials/product_like_modal.html' with obj=product %}
+                                {% include 'partials/add_to_cart_preview.html' with obj=product slug=product.slug %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="product-sidebar-widget">
+                            <div class="product-widget-search">
+                                <form action="{% url 'product:list_view' %}" method="get">
+                                    <input type="search" name="query" placeholder="جستجو ... ">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                            <div class="product-widget">
+                                <h4 class="product-widget-title">دسته بندی ها</h4>
+                                <ul class="product-widget-category">
+                                    <li><a href="{% url 'product:list_view' %}">همه <span>({{ total_products }})</span></a>
+                                    </li>
+                                    {% for category in categories %}
+                                        <li><a href="{{ category.get_absolute_url }}">{{ category.name }}
+                                            <span>({{ category.products.count }})</span></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--== End Product Area Wrapper ==-->
+
+
+        <!--== Start Product Banner Area Wrapper ==-->
+        <section>
+            <div class="container mb-4">
+                <!--== Start Product Category Item ==-->
+                <a class="product-banner-item">
+                    <img src="{% static 'images/shop/banner/7.webp' %}" width="1170" height="240" alt="Image-HasTech">
+                </a>
+                <!--== End Product Category Item ==-->
+            </div>
+        </section>
+        <!--== End Product Banner Area Wrapper ==-->
+
+    </main>
+    {% csrf_token %}
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'js/like.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}

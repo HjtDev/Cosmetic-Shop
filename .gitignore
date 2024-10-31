@@ -124,3 +124,17 @@ dmypy.json
 .pyre/
 
 .idea/
+
+.vscode/
+
+media/category/icon/
+
+*.rar
+
+CosmeticsShop.zip
+
+CosmeticsShopMin.zip
+
+requirements.txt
+
+*.zip

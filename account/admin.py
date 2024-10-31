@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User
-from .forms import UserCreationForm, UserChangeForm
-from django.utils.html import format_html
+from .models import User, EmailNotification
+from .forms import UserCreationForm, UserChangeFormNew
 from django.contrib.auth.models import Group
-
 
 admin.site.unregister(Group)
 
@@ -14,8 +12,15 @@ class UserAdmin(UserAdmin):
     ordering = ['phone']
 
     add_form = UserCreationForm
-    form = UserChangeForm
+    form = UserChangeFormNew
     model = User
+
+    search_fields = [
+        'phone',
+        'first_name',
+        'last_name',
+        'email'
+    ]
 
     list_display = [
         'phone',
@@ -46,8 +51,16 @@ class UserAdmin(UserAdmin):
     # get_saved_products.short_description = "Saved Products"
 
     add_fieldsets = (
-        (None, {'fields': ('phone', 'password1', 'password2')}),
-        ('Personal Information', {'fields': ('first_name', 'last_name', 'email')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Dates', {'fields': ('last_login', 'date_joined')}),
+        ('اصلی', {'fields': ('phone', 'password1', 'password2')}),
+        ('اطلاعات شخصی', {'fields': ('first_name', 'last_name', 'email')}),
+        ('دسترسی ها', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('تاریخ ها', {'fields': ('last_login', 'date_joined')}),
     )
+    
+
+@admin.register(EmailNotification)
+class EmailNotificationAdmin(admin.ModelAdmin):
+    list_display = ('email', 'active')
+    list_filter = ('active',)
+    search_fields = ('email',)
+    list_editable = ('active',)

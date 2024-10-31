@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
-        return self.phone
+        return self.fullname()
 
     def fullname(self):
         return f'{self.first_name} {self.last_name}'
@@ -51,3 +51,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران'
+        
+
+class EmailNotification(models.Model):
+    email = models.EmailField(verbose_name='ایمیل', max_length=255, unique=True)
+    active = models.BooleanField(verbose_name='فعال', default=True)
+
+    class Meta:
+        verbose_name = 'خبر رسانی'
+        verbose_name_plural = 'خبر رسانی'
+
+    def __str__(self):
+        return self.email

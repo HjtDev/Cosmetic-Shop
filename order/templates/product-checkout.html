@@ -1,0 +1,215 @@
+﻿{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}
+    صورت حساب
+{% endblock %}
+
+{% block content %}
+    <main class="main-content">
+
+        <!--== Start Page Header Area Wrapper ==-->
+        <nav aria-label="breadcrumb" class="breadcrumb-style1">
+            <div class="container">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="{% url 'shop:home' %}">صفحه اصلی</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'cart:cart_list' %}">سبد خرید</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">پرداخت</li>
+                </ol>
+            </div>
+        </nav>
+        <!--== End Page Header Area Wrapper ==-->
+        {% if messages %}
+            <div class="row justify-content-lg-center align-items-center mt-5">
+                {% for message in messages %}
+                    <div class="alert alert-danger col-lg-6 col-12" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if form.errors %}
+            <div class="row justify-content-lg-center align-items-center mt-5">
+                <div class="alert alert-danger col-lg-6 col-12" role="alert">
+                    <strong>اطلاعات شما دارای مشکل است.</strong>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field|capfirst }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+        <!--== Start Shopping Checkout Area Wrapper ==-->
+        <form method="post">
+            {% csrf_token %}
+            <section class="shopping-checkout-wrap section-space">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!--== Start Billing Accordion ==-->
+                            <div class="checkout-billing-details-wrap">
+                                <h2 class="title">جزئیات صورتحساب</h2>
+                                <div class="billing-form-wrap">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="f_name">نام کوچک <abbr class="required"
+                                                                                   title="required">*</abbr></label>
+                                                <input required id="f_name" name="first_name" type="text"
+                                                       class="form-control"
+                                                       value="{{ form.first_name.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="l_name">نام خانوادگی <abbr class="required"
+                                                                                       title="required">*</abbr></label>
+                                                <input required id="l_name" name="last_name" type="text"
+                                                       class="form-control"
+                                                       value="{{ form.last_name.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="phone">شماره تلفن <abbr class="required"
+                                                                                    title="required">*</abbr></label>
+                                                <input required id="phone" name="phone" type="text" maxlength="11"
+                                                       minlength="11"
+                                                       class="form-control"
+                                                       value="{{ form.phone.value|default:request.user.phone }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="email">آدرس ایمیل </label>
+                                                <input id="email" name="email" type="email" class="form-control"
+                                                       value="{{ form.email.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="town">استان
+                                                    <abbr class="required" title="required">*</abbr></label>
+                                                <input required id="town" name="province" type="text"
+                                                       class="form-control"
+                                                       value="{{ form.province.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="town">شهر
+                                                    <abbr class="required" title="required">*</abbr></label>
+                                                <input required id="town" name="city" type="text" class="form-control"
+                                                       value="{{ form.city.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="street-address">آدرس<abbr class="required"
+                                                                                      title="required">*</abbr></label>
+                                                <input required id="street-address" name="address" type="text"
+                                                       class="form-control"
+                                                       placeholder="آدرس محل دریافت"
+                                                       value="{{ form.address.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="postal-code">کد پستی<abbr class="required"
+                                                                                      title="required">*</abbr></label>
+                                                <input required id="postal-code" name="postal_code" type="text"
+                                                       class="form-control"
+                                                       placeholder="کدپستی محل دریافت" minlength="10"
+                                                       value="{{ form.postal_code.value|default:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-0">
+                                                <label for="order-notes">سفارش یادداشت (اختیاری)</label>
+                                                <textarea id="order-notes" name="extra_description" class="form-control"
+                                                          value="{{ form.extra_description.value|default:'' }}"
+                                                          placeholder="نکاتی در مورد سفارش شما، به عنوان مثال یادداشت های ویژه برای تحویل"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--== End Billing Accordion ==-->
+                        </div>
+                        <div class="col-lg-6">
+                            <!--== Start Order Details Accordion ==-->
+                            <div class="checkout-order-details-wrap">
+                                <div class="order-details-table-wrap table-responsive">
+                                    <h2 class="title mb-25">سفارش شما</h2>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="product-name">محصول</th>
+                                            <th class="product-total">جمع</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-body">
+                                        {% for item in cart %}
+                                            <tr class="cart-item" id="cart-item-checkout-{{ item.product.slug }}">
+                                                <td class="product-name">{{ item.product.title }} <span
+                                                        class="product-quantity">× {{ item.quantity }}</span></td>
+                                                <td class="product-total">{{ item.total }} تومان</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot class="table-foot">
+                                        <th>جمع</th>
+                                        <td id="checkout-total-cost">{{ cart.get_total_cost }} تومان</td>
+                                        </tfoot>
+                                    </table>
+                                    <div class="shop-payment-method">
+                                        <div id="PaymentMethodAccordion">
+                                            <div class="card">
+                                                <div class="card-header" id="check_payments">
+                                                    <h5 class="title" data-bs-toggle="collapse"
+                                                        data-bs-target="#itemOne"
+                                                        aria-controls="itemOne" aria-expanded="true">روش پرداخت</h5>
+                                                </div>
+                                                <div id="itemOne" class="collapse show" aria-labelledby="check_payments"
+                                                     data-bs-parent="#PaymentMethodAccordion">
+                                                    <div class="card-body">
+                                                        <p>پس از ثبت سفارش با ما تماس بگیرید. 09001234567</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="p-text">اطلاعات شخصی شما برای پردازش سفارش شما، پشتیبانی از تجربه شما
+                                            در
+                                            سراسر این وب سایت و برای اهداف دیگری که در ما توضیح داده شده است، استفاده
+                                            خواهد
+                                            شد.
+                                        <div class="agree-policy">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="privacy"
+                                                       class="custom-control-input visually-hidden">
+                                                <label for="privacy" class="custom-control-label">من با شرایط و ضوابط وب
+                                                    سایت
+                                                    موافقم <span class="required">*</span></label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn-place-order w-100">ثبت سفارش</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--== End Order Details Accordion ==-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        <!--== End Shopping Checkout Area Wrapper ==-->
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/order_privacy.js' %}"></script>
+{% endblock %}

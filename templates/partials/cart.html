@@ -1,0 +1,30 @@
+{% load static %}
+<!--== Start Aside Cart ==-->
+<aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart"
+       aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h1 class="d-none" id="offcanvasRightLabel">سبد خرید</h1>
+        <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">سبد خرید <i
+                class="fa fa-chevron-left"></i></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="aside-cart-product-list">
+            {% for item in cart %}
+                <li class="aside-product-list-item" id="product-{{ item.product.slug }}">
+                    <a class="remove quick-remove" data-slug="{{ item.product.slug }}">×</a>
+                    <a href="{% url 'product:detail_view' item.product.slug %}">
+                        <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
+                        <span class="product-title">{{ item.product.title }}</span>
+                    </a>
+                    <span class="product-price">{{ item.quantity }} × {{ item.price }} تومان</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="cart-total"><span>جمع کل:</span><span id="cart-total-price" class="amount">{{ cart.get_total_cost }} تومان</span>
+        </p>
+        <a class="btn-total" href="{% url 'cart:cart_list' %}">مشاهده سبد خرید</a>
+    </div>
+</aside>
+<!--== End Aside Cart ==-->
+{% csrf_token %}
+<script src="{% static 'js/quick_cart_remove.js' %}"></script>
