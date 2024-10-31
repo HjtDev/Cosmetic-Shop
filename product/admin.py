@@ -28,7 +28,7 @@ class ProductAdmin(admin.ModelAdmin):
     verbose_name_plural = 'محصولات'
     list_display = ('title', 'category', 'price', 'discount', 'inventory', 'is_visible')
     list_editable = ('price', 'discount', 'is_visible')
-    search_fields = ('title', 'description', 'slug')
+    search_fields = ('title', 'short_description', 'long_description', 'slug')
     prepopulated_fields = {'slug': ('title',)}
     list_filter = (
         ('last_sell', JDateFieldListFilter),

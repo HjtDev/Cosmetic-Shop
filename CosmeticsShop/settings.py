@@ -25,9 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1g%vt99#b+j*3yizn#2t-2!2nd9r7a-uek6k7yj*ljx4cf0sc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['oriflame-esf.ir', 'www.oriflame-esf.ir']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
 
 
 # Application definition
@@ -97,6 +102,10 @@ DATABASES = {
     }
 }
 
+DEFAULT_CHARSET = 'utf-8'
+FILE_CHARSET = 'utf-8'
+
+
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
@@ -146,8 +155,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = '/home/oriflam1/public_html/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+#MEDIA_ROOT = '/home/oriflam1/pulbic_html/media/'
+
+#DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 Mb
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -171,7 +184,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
 # DJANGORESIZED_DEFAULT_SCALE = 0.5
-# DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_QUALITY = 100
 # DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'PNG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {
