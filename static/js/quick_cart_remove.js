@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+    function numberWithCommas(x) {
+        // Convert the number to a string and use regex to add commas
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     // Use event delegation to handle dynamically added elements
     $(document).on('click', '.quick-remove', function (event) {
         console.log('pressed');
@@ -23,8 +29,8 @@ $(document).ready(function () {
                 // Handle successful removal (e.g., update UI)
                 $(`#product-${slug}`).remove();  // Remove the corresponding product list item
                 $(`#cart-item-checkout-${slug}`).remove();  // Remove the corresponding product list item
-                $('#cart-total-price').text(response.total_cost + ' تومان');  // Update total cost if needed
-                $('#checkout-total-cost').text(response.total_cost + ' تومان');  // Update total cost if needed
+                $('#cart-total-price').text(numberWithCommas(response.total_cost) + ' تومان');  // Update total cost if needed
+                $('#checkout-total-cost').text(numberWithCommas(response.total_cost) + ' تومان');  // Update total cost if needed
             },
             error: function (xhr, status, error) {
                 console.error('Error removing product');

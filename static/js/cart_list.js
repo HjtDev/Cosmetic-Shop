@@ -97,7 +97,7 @@ $(document).ready(function () {
             success: function (response) {
                 // Handle successful removal (e.g., update UI)
                 $(`#product-row-${slug}`).remove();  // Remove the corresponding table row
-                $('#total-cart-cost').text(response.total_cost + ' تومان');  // Update total cost if needed
+                $('#total-cart-cost').text(numberWithCommas(response.total_cost) + ' تومان');  // Update total cost if needed
             },
             error: function (xhr, status, error) {
                 console.error('Error removing product');

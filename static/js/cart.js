@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    function numberWithCommas(x) {
+        // Convert the number to a string and use regex to add commas
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     $('.action-btn-cart').click(function () {
         let productSlug = $(this).data('slug');
         let quantity = 1;
@@ -20,7 +24,7 @@ $(document).ready(function () {
                     $('#product-' + productSlug).remove()
                 }
                 $('.aside-cart-product-list').append(response.page);
-                $('#cart-total-price').text(response.total_price + ' تومان');
+                $('#cart-total-price').text(numberWithCommas(response.total_price) + ' تومان');
                 // $('#action-WishlistModal-' + productSlug + ' .modal-action-messages').text('از لیست علاقه مندی ها حذف شد');
             },
             error: function (xhr, status, error) {
@@ -49,7 +53,7 @@ $(document).ready(function () {
                     $('#product-' + productSlug).remove()
                 }
                 $('.aside-cart-product-list').append(response.page);
-                $('#cart-total-price').text(response.total_price + ' تومان');
+                $('#cart-total-price').text(numberWithCommas(response.total_price) + ' تومان');
                 // $('#action-WishlistModal-' + productSlug + ' .modal-action-messages').text('از لیست علاقه مندی ها حذف شد');
             },
             error: function (xhr, status, error) {
@@ -77,7 +81,7 @@ $(document).ready(function () {
                     $('#product-' + productSlug).remove();
                 }
                 $('.aside-cart-product-list').append(response.page);
-                $('#cart-total-price').text(response.total_price + ' تومان');
+                $('#cart-total-price').text(numberWithCommas(response.total_price )+ ' تومان');
                 // $('#action-WishlistModal-' + productSlug + ' .modal-action-messages').text('از لیست علاقه مندی ها حذف شد');
             },
             error: function (xhr, status, error) {
