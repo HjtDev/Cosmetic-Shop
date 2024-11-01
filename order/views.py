@@ -28,7 +28,7 @@ def checkout_view(request):
                 )
             cart.clear()
             send_sms(ORDER_SUBMITED, request.user.phone, code=order.order_id)
-            send_sms(OWNER_ORDER_NOTIFICATION, '09132017122', name=f'{order.first_name} {order.last_name}', code=order.order_id)
+            send_sms(OWNER_ORDER_NOTIFICATION, '09132017122', name=f'{order.first_name} {order.last_name}', code=request.user.phone)
             messages.success(request, 'سفارش شما ثبت شد.')
             return redirect('account:profile')
         else:
