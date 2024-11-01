@@ -140,3 +140,5 @@ requirements.txt
 *.zip
 
 github/
+
+media/

@@ -6,8 +6,16 @@ from jdatetime import datetime
 
 @receiver(pre_save, sender=Order)
 def paid_signal(sender, instance: Order, **kwargs):
-    if not instance.pk:
+    if not instance.pk:  # model is not created yet
         return
+
+    if instance.status == Order.OrderStatus.ABORTED:  # order is aborted so the quantity must increase again
+        for item in instance.items.all():
+            item.product.inventory += item.quantity
+            item.product.save()
+        return
+
+
     old_paid = Order.objects.get(pk=instance.pk).paid
     if not old_paid and instance.paid:
         if instance.status == Order.OrderStatus.PENDING:

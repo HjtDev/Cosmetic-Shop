@@ -1,4 +1,5 @@
 {% load static %}
+{% load tags %}
 <!--== Start Aside Cart ==-->
 <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart"
        aria-labelledby="offcanvasRightLabel">
@@ -16,7 +17,7 @@
                         <img src="{{ item.product.images.first.image.url }}" width="68" height="84" alt="Image">
                         <span class="product-title">{{ item.product.title }}</span>
                     </a>
-                    <span class="product-price">{{ item.quantity }} × {{ item.price }} تومان</span>
+                    <span class="product-price">{{ item.quantity }} × {{ item.price | intcomma }} تومان</span>
                 </li>
             {% endfor %}
         </ul>
