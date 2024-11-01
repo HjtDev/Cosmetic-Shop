@@ -1,5 +1,6 @@
 ﻿{% extends 'parent/base.html' %}
 {% load static %}
+{% load tags %}
 
 {% block title %}
     لیست محصولات
@@ -77,9 +78,9 @@
                                             <h4 class="title"><a
                                                     href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
                                             <div class="prices">
-                                                <span class="price">{{ product.get_price }} تومان</span>
+                                                <span class="price">{{ product.get_price | intcomma }} تومان</span>
                                                 {% if product.discount %}
-                                                    <span class="price-old">{{ product.price }}</span>
+                                                    <span class="price-old">{{ product.price | intcomma }}</span>
                                                 {% endif %}
                                             </div>
                                         </div>

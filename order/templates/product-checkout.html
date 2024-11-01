@@ -1,5 +1,6 @@
 ﻿{% extends 'parent/base.html' %}
 {% load static %}
+{% load tags %}
 
 {% block title %}
     صورت حساب
@@ -156,13 +157,13 @@
                                             <tr class="cart-item" id="cart-item-checkout-{{ item.product.slug }}">
                                                 <td class="product-name">{{ item.product.title }} <span
                                                         class="product-quantity">× {{ item.quantity }}</span></td>
-                                                <td class="product-total">{{ item.total }} تومان</td>
+                                                <td class="product-total">{{ item.total | intcomma }} تومان</td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>
                                         <tfoot class="table-foot">
                                         <th>جمع</th>
-                                        <td id="checkout-total-cost">{{ cart.get_total_cost }} تومان</td>
+                                        <td id="checkout-total-cost">{{ cart.get_total_cost | intcomma }} تومان</td>
                                         </tfoot>
                                     </table>
                                     <div class="shop-payment-method">

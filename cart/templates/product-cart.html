@@ -1,5 +1,6 @@
 ﻿{% extends 'parent/base.html' %}
 {% load static %}
+{% load tags %}
 
 {% block title %}
     سبد خرید
@@ -66,7 +67,7 @@
                                     </td>
                                     <td class="product-price">
                                         <span id="price-{{ item.product.slug }}"
-                                              class="price">{{ item.price }} تومان</span>
+                                              class="price">{{ item.price | intcomma }} تومان</span>
                                     </td>
                                     <td class="product-quantity">
                                         <div class="pro-qty">
@@ -81,7 +82,7 @@
                                     </td>
                                     <td class="product-subtotal">
                                         <span id="total-{{ item.product.slug }}"
-                                              class="price">{{ item.total }} تومان</span>
+                                              class="price">{{ item.total | intcomma }} تومان</span>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -105,7 +106,7 @@
                                 <tr class="cart-subtotal">
                                     <th>جمع کل</th>
                                     <td>
-                                        <span id="total-cart-cost" class="amount">{{ cart.get_total_cost }} تومان</span>
+                                        <span id="total-cart-cost" class="amount">{{ cart.get_total_cost | intcomma }} تومان</span>
                                     </td>
                                 </tr>
                                 </tbody>

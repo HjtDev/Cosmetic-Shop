@@ -25,14 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1g%vt99#b+j*3yizn#2t-2!2nd9r7a-uek6k7yj*ljx4cf0sc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['oriflame-esf.ir', 'www.oriflame-esf.ir']
+ALLOWED_HOSTS = []
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
-SESSION_COOKIE_SECURE = True  # Ensure cookies are only sent over HTTPS
-CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = False  # Redirect all HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = False  # Ensure cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = False  # Ensure CSRF cookies are only sent over HTTPS
 
 
 # Application definition
@@ -152,12 +152,12 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/oriflam1/public_html/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = '/home/oriflam1/public_html/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 #MEDIA_ROOT = '/home/oriflam1/pulbic_html/media/'
 
 #DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 Mb

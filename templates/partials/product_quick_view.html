@@ -1,4 +1,5 @@
 {% load static %}
+{% load tags %}
 <!--== Start Product Quick View Modal ==-->
 <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal-{{ obj.slug }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -39,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div class="product-details-action">
-                                        <h4 class="price">{{ obj.get_price }} تومان</h4>
+                                        <h4 class="price">{{ obj.get_price | intcomma }} تومان</h4>
                                         <div class="product-details-cart-wishlist">
                                             <button type="button" class="btn custom-add" data-slug="{{ obj.slug }}" data-bs-toggle="modal"
                                                     data-bs-target="#action-CartAddModal-{{ obj.slug }}">به سبد خرید اضافه کنید
