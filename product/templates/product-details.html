@@ -47,9 +47,9 @@
                             </div>
                             <div class="product-details-action">
                                 <div class="prices">
-                                    <span class="price">{{ product.get_price }} تومان</span>
+                                    <span class="price">{{ product.get_price | intcomma }} تومان</span>
                                     {% if product.discount %}
-                                        <del class="price-old">{{ product.price }}</del>
+                                        <del class="price-old">{{ product.price | intcomma }}</del>
                                     {% endif %}
                                 </div>
                                 <div class="product-details-cart-wishlist">
@@ -221,9 +221,9 @@
                                                 <h4 class="title"><a href="{{ re_product.get_absolute_url }}">{{ re_product.title }}</a>
                                                 </h4>
                                                 <div class="prices">
-                                                    <span class="price">{{ re_product.get_price }} تومان</span>
+                                                    <span class="price">{{ re_product.get_price | intcomma }} تومان</span>
                                                     {% if product.discount %}
-                                                        <span class="price-old">{{ re_product.price }}</span>
+                                                        <span class="price-old">{{ re_product.price | intcomma }}</span>
                                                     {% endif %}
                                                 </div>
                                                 <div class="product-action">
@@ -233,7 +233,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--== End prPduct Item ==-->
+                                        <!--== End Product Item ==-->
                                     </div>
                                 {% endfor %}
                             </div>

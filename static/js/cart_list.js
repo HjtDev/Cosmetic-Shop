@@ -1,5 +1,12 @@
 $(document).ready(function () {
+
+    function numberWithCommas(x) {
+        // Convert the number to a string and use regex to add commas
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     let updateButton = $('.btn-update-cart');
+
     function showSaveButton() {
         updateButton.removeAttr('hidden'); // Remove the hidden attribute
     }
@@ -43,14 +50,14 @@ $(document).ready(function () {
             },
             data: data,  // Convert array to JSON string
             success: function (response) {
-                $('#total-cart-cost').text(response.total_cost + ' تومان');
+                $('#total-cart-cost').text(numberWithCommas(response.total_cost) + ' تومان');
 
                 // Update each item's price and total price in the DOM
                 for (const slug in response.items) {
                     if (response.items.hasOwnProperty(slug)) {
                         const item = response.items[slug];
-                        $(`#price-${slug}`).text(item.price + ' تومان');  // Update individual item price
-                        $(`#total-${slug}`).text(item.total + ' تومان');  // Update total price for this item
+                        $(`#price-${slug}`).text(numberWithCommas(item.price) + ' تومان');  // Update individual item price
+                        $(`#total-${slug}`).text(numberWithCommas(item.total) + ' تومان');  // Update total price for this item
                     }
                 }
                 updateButton.text('ذخیره شد');
