@@ -137,7 +137,7 @@
                                 <h4 class="title"><a href="{% url 'product:detail_view' product.slug %}">{{ product.title }}</a></h4>
                                 <div class="prices">
                                     <span class="price">{{ product.get_price | intcomma }} تومان</span>
-                                    {% if product.discount %}
+                                    {% if product.new_price %}
                                         <span class="price-old">{{ product.price | intcomma }}</span>
                                     {% endif %}
                                 </div>

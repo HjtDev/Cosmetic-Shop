@@ -26,8 +26,8 @@ class CommentInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     verbose_name = 'محصول'
     verbose_name_plural = 'محصولات'
-    list_display = ('title', 'category', 'price', 'discount', 'inventory', 'is_visible')
-    list_editable = ('price', 'discount', 'is_visible')
+    list_display = ('title', 'category', 'price', 'new_price', 'inventory', 'is_visible')
+    list_editable = ('price', 'new_price', 'is_visible')
     search_fields = ('title', 'short_description', 'long_description', 'slug')
     prepopulated_fields = {'slug': ('title',)}
     list_filter = (

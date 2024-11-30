@@ -32,7 +32,7 @@ class Cart:
             if self.cart['products'].get(str(product_id), None):
                 self.cart['products'][str(product_id)]['quantity'] = int(
                     self.cart['products'][str(product_id)]['quantity']) + int(quantity)
-                self.cart['products'][str(product_id)]['price'] = product.price
+                self.cart['products'][str(product_id)]['price'] = product.get_price()
                 existed = True
             else:
                 self.cart['products'][str(product_id)] = {'quantity': quantity, 'price': str(product.get_price())}
