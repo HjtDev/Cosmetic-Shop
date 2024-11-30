@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(verbose_name='توضیحات')),
                 ('slug', models.SlugField(max_length=75, unique=True, verbose_name='اسلاگ')),
                 ('price', models.PositiveIntegerField(default=0, verbose_name='قیمت')),
-                ('discount', models.PositiveIntegerField(default=0, validators=[django.core.validators.MaxValueValidator(100)], verbose_name='تخفیف به درصد')),
+                ('new_price', models.PositiveIntegerField(default=0, validators=[django.core.validators.MaxValueValidator(100)], verbose_name='تخفیف به درصد')),
                 ('inventory', models.PositiveIntegerField(verbose_name='موحودی در انبار')),
                 ('sold', models.PositiveIntegerField(default=0, verbose_name='تعداد فروش')),
                 ('is_visible', models.BooleanField(default=True, verbose_name='نمایش در سایت')),
