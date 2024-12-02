@@ -3090,9 +3090,20 @@ hr {
     font-size: 12px;
     font-weight: 300;
     margin-left: 4px;
-    -webkit-text-decoration-line: line-through;
-    text-decoration-line: line-through
+    position: relative;
 }
+
+.product-item .prices .price-old::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 45%;
+    width: 100%;
+    height: 1.5px;
+    background-color: red;
+    transform: translateY(-50%);
+}
+
 
 @media only screen and (max-width: 575px) {
     .product-item .prices .price-old {
