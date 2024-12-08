@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="hero-slide-thumb">
-                                        <img src="{% static 'images/slider/slider1.webp' %}" width="841" height="832" alt="Image">
+                                        <img src="{% static 'images/slider/slider1New.png' %}" width="841" height="832" alt="Image">
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                                 <h4 class="title"><a href="{% url 'product:detail_view' product.slug %}">{{ product.title }}</a></h4>
                                 <div class="prices">
                                     <span class="price">{{ product.get_price | intcomma }} تومان</span>
-                                    {% if product.discount %}
+                                    {% if product.new_price %}
                                         <span class="price-old">{{ product.price | intcomma }}</span>
                                     {% endif %}
                                 </div>

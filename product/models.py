@@ -44,7 +44,7 @@ class Product(models.Model):
     long_description = models.TextField(verbose_name='توضیحات بلند', blank=True, null=True)
     slug = models.CharField(verbose_name='اسلاگ', unique=True, max_length=75)
     price = models.PositiveIntegerField(verbose_name='قیمت', default=0)
-    discount = models.PositiveIntegerField(verbose_name='تخفیف به درصد', validators=[MaxValueValidator(100)], default=0)
+    new_price = models.PositiveIntegerField(verbose_name='قیمت جدید', default=0)
     likes = models.ManyToManyField(User, related_name='liked_products', blank=True,
                                    verbose_name='افرادی که این محصول را پسندیدند')
     bought = models.ManyToManyField(User, related_name='bought_products', blank=True,
@@ -68,7 +68,7 @@ class Product(models.Model):
         ]
 
     def get_price(self):
-        return int(self.price * (1 - (self.discount / 100))) if self.discount else self.price
+        return self.new_price if self.new_price else self.price
 
     def get_absolute_url(self):
         return reverse('product:detail_view', kwargs={'slug': self.slug})

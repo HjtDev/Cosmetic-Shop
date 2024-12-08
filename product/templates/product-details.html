@@ -48,7 +48,7 @@
                             <div class="product-details-action">
                                 <div class="prices">
                                     <span class="price">{{ product.get_price | intcomma }} تومان</span>
-                                    {% if product.discount %}
+                                    {% if product.new_price %}
                                         <del class="price-old">{{ product.price | intcomma }}</del>
                                     {% endif %}
                                 </div>
@@ -222,7 +222,7 @@
                                                 </h4>
                                                 <div class="prices">
                                                     <span class="price">{{ re_product.get_price | intcomma }} تومان</span>
-                                                    {% if product.discount %}
+                                                    {% if product.new_price %}
                                                         <span class="price-old">{{ re_product.price | intcomma }}</span>
                                                     {% endif %}
                                                 </div>
