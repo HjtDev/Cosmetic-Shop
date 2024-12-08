@@ -39,7 +39,7 @@ def checkout_view(request):
             messages.error(request, 'لطفا برای ادامه شماره موبایل خود را تایید کنید.')
             request.session['next_page'] = 'order:checkout'
             return redirect('account:login')
-        if request.user.orders.exclude(status=Order.OrderStatus.DONE).exists():
+        if request.user.orders.exclude(status=Order.OrderStatus.DONE).exclude(status=Order.OrderStatus.ABORTED).exists():
             messages.error(request, 'شما نمی توانید بیشتر از یک سفارش فعال داشته باشید لطفا بخش سفارشات خود را برسی کرده و در صورت بروز مشکل با ما تماس بگیرید..')
             return redirect('account:profile')
         if request.session.get('cart', None).get('products', None):
