@@ -52,6 +52,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.DO_NOTHING,
                                  verbose_name='دسته بندی')
     inventory = models.PositiveIntegerField(verbose_name='موحودی در انبار', default=0)
+    notify_me = models.ManyToManyField(User, related_name='notify_me', blank=True, verbose_name='به من اطلاع بده')
     sold = models.PositiveIntegerField(verbose_name='تعداد فروش', default=0)
     is_visible = models.BooleanField(verbose_name='نمایش در سایت', default=True)
     visible_products = VisibleManager()

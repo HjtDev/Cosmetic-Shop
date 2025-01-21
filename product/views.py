@@ -67,3 +67,29 @@ def product_category_view(request, slug):
         'total_products': Product.visible_products.count()
     }
     return render(request, 'product-list.html', context)
+
+
+def notify_me(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            try:
+                product = Product.objects.get(slug=request.POST.get('slug'))
+                message = ''
+                flag: bool
+                if request.user not in product.notify_me.all():
+                    product.notify_me.add(request.user)
+                    message = 'در صورت موجود شدن محصول از طریق پیامک به شما اطلاع رسانی خواهد شد.'
+                    flag = True
+                else:
+                    product.notify_me.remove(request.user)
+                    message = 'از لیست اطلاع رسانی ها حذف شد.'
+                    flag = False
+                product.save()
+                return JsonResponse({'ok': True, 'message': message, 'flag': flag}, status=200)
+            except Product.DoesNotExist:
+                return JsonResponse({'ok': False, 'error': 'No such product.'}, status=404)
+        else:
+            return JsonResponse({'ok': False, 'error': 'Invalid request method'}, status=405)
+    else:
+        return JsonResponse({'ok': False, 'error': 'ابتدا باید به حساب کاربری خود وارد شوید.'}, status=401)
+

@@ -8,6 +8,7 @@ api_key = "1o2dzyt4MHJUJrqDRzdvZiRc3pvDYPZ0p8vxCLKJUbI="
 LOGIN_VERIFICATION = 's7n0wwywngv2zud'
 ORDER_SUBMITED = '2lbj39z83uqgz9c'
 OWNER_ORDER_NOTIFICATION = 'qa3beq00ab2ug2c'
+NOTIFY_ME = '12uunfatgs6fhep'
 
 
 def send_sms(pattern, recipient, **kwargs):
