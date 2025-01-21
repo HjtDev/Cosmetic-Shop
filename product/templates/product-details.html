@@ -39,6 +39,11 @@
                             <h5 class="product-details-collection">{{ product.category.name }}</h5>
                             <h3 class="product-details-title">{{ product.title }}</h3>
                             <p class="mb-7">{{ product.short_description }}</p>
+                            <p class="mb-7">موجود در انبار: {% if product.inventory %}
+                            	{{ product.inventory }} عدد
+                            {% else %}
+                                ناموجود
+                            {% endif %} </p>
                             <div class="product-details-pro-qty">
                                 <div class="pro-qty">
                                     <input type="text" title="Quantity" id="quick-quantity-detail" value="1" min="1"
@@ -53,18 +58,29 @@
                                     {% endif %}
                                 </div>
                                 <div class="product-details-cart-wishlist">
-                                    <button type="button" class="btn-wishlist action-btn-wishlist"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#action-WishlistModal-{{ product.slug }}"
-                                            data-slug="{{ product.slug }}"><i
-                                            class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
-                                    </button>
-                                    <button type="button" class="btn custom-detail-add" data-bs-toggle="modal"
-                                            data-slug="{{ product.slug }}"
-                                            data-bs-target="#action-CartAddModal-{{ product.slug }}">به سبد خرید اضافه
-                                        کنید
-                                    </button>
-                                    {% csrf_token %}
+                                    {% if product.inventory != 0 %}
+                                        <button type="button" class="btn-wishlist action-btn-wishlist"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#action-WishlistModal-{{ product.slug }}"
+                                                data-slug="{{ product.slug }}"><i
+                                                class="fa {% if request.user in product.likes.all %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
+                                        </button>
+                                        <button type="button" class="btn custom-detail-add" data-bs-toggle="modal"
+                                                data-slug="{{ product.slug }}"
+                                                data-bs-target="#action-CartAddModal-{{ product.slug }}">به سبد خرید اضافه
+                                            کنید
+                                        </button>
+                                        {% csrf_token %}
+                                    {% else %}
+                                        <button type="button" class="btn notify-me" data-bs-toggle="modal"
+                                                data-slug="{{ product.slug }}"
+                                                data-bs-target="#action-NotifyMeModal-{{ product.slug }}">{% if request.user in product.notify_me.all %}
+                                                	در لیست اطلاع رسانی
+                                                {% else %}
+                                                    موجود شد اطلاع بده
+                                                {% endif %}
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -247,10 +263,12 @@
     </main>
     {% include 'partials/add_to_cart_preview.html' with obj=product %}
     {% include 'partials/product_like_modal.html' with obj=product %}
+    {% include 'partials/notify-me.html' with obj=product %}
 {% endblock %}
 
 {% block script %}
     <script src="{% static 'js/cart.js' %}"></script>
     <script src="{% static 'js/like.js' %}"></script>
     <script src="{% static 'js/comment.js' %}"></script>
+    <script src="{% static 'js/notify-me.js' %}"></script>
 {% endblock %}
